@@ -32,6 +32,11 @@
  * @import "components/forms";
  */
 
+ body { 
+     font-family: 'Roboto', sans-serif;
+     font-weight: 300;
+ }
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.

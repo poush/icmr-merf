@@ -128,25 +128,25 @@ let colors = {
   "pink-lightest": "#ffebef",
 
   get ["brand-darkest"]() {
-    return this["orange-darkest"];
+    return this["blue-darkest"];
   },
   get ["brand-darker"]() {
-    return this["orange-darker"];
+    return this["blue-darker"];
   },
   get ["brand-dark"]() {
-    return this["orange-dark"];
+    return this["blue-dark"];
   },
   get ["brand"]() {
-    return this["orange"];
+    return this["blue"];
   },
   get ["brand-light"]() {
-    return this["orange-light"];
+    return this["blue-light"];
   },
   get ["brand-lighter"]() {
-    return this["orange-lighter"];
+    return this["blue-lighter"];
   },
   get ["brand-lightest"]() {
-    return this["orange-lightest"];
+    return this["blue-lightest"];
   }
 };
 

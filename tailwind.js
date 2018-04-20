@@ -622,6 +622,16 @@ module.exports = {
   */
 
   maxHeight: {
+    xs: "20rem",
+    "sm-m": "25rem",
+    sm: "30rem",
+    md: "40rem",
+    lg: "50rem",
+    xl: "60rem",
+    "2xl": "70rem",
+    "3xl": "80rem",
+    "4xl": "90rem",
+    "5xl": "100rem",
     full: "100%",
     screen: "100vh"
   },
@@ -649,7 +659,13 @@ module.exports = {
     "3": "0.75rem",
     "4": "1rem",
     "6": "1.5rem",
-    "8": "2rem"
+    "8": "2rem",
+    "12": "3rem",
+    "16": "4rem",
+    "20": "5rem",
+    "24": "6rem",
+    "28": "7rem",
+    "32": "8rem"
   },
 
   /*
@@ -676,7 +692,13 @@ module.exports = {
     "3": "0.75rem",
     "4": "1rem",
     "6": "1.5rem",
-    "8": "2rem"
+    "8": "2rem",
+    "12": "3rem",
+    "16": "4rem",
+    "20": "5rem",
+    "24": "6rem",
+    "28": "7rem",
+    "32": "8rem"
   },
 
   /*

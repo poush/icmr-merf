@@ -32,10 +32,11 @@
  * @import "components/forms";
  */
 
- body { 
-     font-family: 'Roboto', sans-serif;
-     font-weight: 300;
- }
+body { 
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    background: #F7F7F7;
+}
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your
@@ -61,3 +62,20 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+.v-autocomplete {
+    @apply .w-1/2 .max-w-sm;
+}
+
+.v-autocomplete-input-group {
+    @apply .flex .items-center;
+}
+
+.v-autocomplete-input {
+    @apply .text-xl .text-center .w-full .text-grey font-thin .rounded-full .mr-3 .py-4 .px-2 .bg-grey-lighter;
+}
+
+
+.cal-wrapper .cal-body {
+    @apply .bg-white;
+}

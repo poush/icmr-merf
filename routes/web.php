@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/about', 'HomeController@index')->name('about');
+Route::get('/help', 'HomeController@index')->name('help');
+
+// Route::group(['prefix' => 'equipments', 'as' => 'equipments'], function () {
+//     Route::get('/', 'EquipmentController@index');
+// });
+
+Route::resource('equipments', 'EquipmentController')->only([
+    'index', 'show'
+]);

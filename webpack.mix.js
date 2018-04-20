@@ -20,6 +20,9 @@ mix
   ])
   .purgeCss();
 
+mix.browserSync('192.168.10.90');
+
+
 if (mix.inProduction()) {
   mix.version();
 }

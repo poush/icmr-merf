@@ -27,6 +27,14 @@
                         </div>
                     </div>
 
+                    <div class="flex items-stretch mb-3">
+                        <label for="email" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Mobile</label>
+                        <div class="flex flex-col w-3/4">
+                            <input id="mobile" type="number" class="flex-grow h-8 px-2 border rounded {{ $errors->has('mobile') ? 'border-red-dark' : 'border-grey-light' }}" name="mobile" value="{{ old('mobile') }}" required autofocus>
+                            {!! $errors->first('mobile', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                        </div>
+                    </div>
+
                     <div class="flex items-stretch mb-4">
                         <label for="password" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Password</label>
                         <div class="flex flex-col w-3/4">

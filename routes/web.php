@@ -25,3 +25,12 @@ Route::get('/help', 'HomeController@index')->name('help');
 Route::resource('equipments', 'EquipmentController')->only([
     'index', 'show'
 ]);
+
+Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware'=> ['auth']], function(){
+
+	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+	Route::resource('users', 'UserController');
+	Route::resource('institutes', 'InstituteController');
+	Route::resource('equipments', 'EquipmentController');
+
+});

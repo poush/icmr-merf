@@ -17,6 +17,7 @@
         </button>
     </div>
     
+    @if( auth()->guest() || auth()->user()->role == 'user' || !route()->current()->has('admin') )
     <div class="w-full block text-right flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="text-sm lg:flex-grow">
             <a href="{{ route('home') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
@@ -28,9 +29,31 @@
             <a href="{{ route('equipments.index') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
                 Equipments
             </a>
-            <a href="{{ route('help') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter">
+            <a href="{{ route('help') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
                 Help
+            </a>
+
+            <a href="{{ route('admin.dashboard') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter">
+                Dashboard
+            </a>
+        </div>
+
+        <div class="w-full block text-right flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+            <a href="{{ route('admin.users.index') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
+                Users
+            </a>
+            <a href="{{ route('admin.equipments.index') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
+                Equipments
+            </a>
+            <a href="{{ route('admin.institutes.index') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
+                Institutes
+            </a>
+            <a href="{{ route('home') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter">
+                Website
             </a>
         </div>
     </div>
+    </div>
+    @endif
 </nav>

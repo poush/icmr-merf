@@ -8,6 +8,8 @@ class Equipment extends Model
 {
     protected $table = 'equipments';
 
+    protected $fillable = [ 'name', 'manufacturer', 'model', 'quantity', 'extra', 'features', 'working', 'operation', 'description', 'is_working', 'health_problems', 'training_requirement', 'machine_rest', 'location', 'specs' ];
+
     public function institutes()
     {
         return $this
@@ -18,5 +20,15 @@ class Equipment extends Model
     public function availability()
     {
         return $this->hasMany(EquipmentAvailability::class);
+    }
+
+    public function createEquipment( $data )
+    {
+        return parent::create( $data );
+    }
+
+    public function updateEquipment( $data )
+    {
+        return $this->update( $data );
     }
 }

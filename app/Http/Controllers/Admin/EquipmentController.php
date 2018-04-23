@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Equipment;
+use App\Http\Requests\Equipment\CreateRequest;
+use App\Http\Requests\Equipment\UpdateRequest;
 
 class EquipmentController extends Controller
 {
@@ -39,9 +41,9 @@ class EquipmentController extends Controller
      */
     public function store(CreateRequest $request, Equipment $equipment)
     {
-        $equipment->create( $request->all() );
+        $equipment = $equipment->createEquipment( $request->except('_token') );
 
-        return redirect( 'admin.equipments.edit', $equipment->id);
+        return redirect()->route('admin.equipments.edit', $equipment->id);
     }
 
     /**
@@ -75,7 +77,7 @@ class EquipmentController extends Controller
      */
     public function update(UpdateRequest $request, Equipment $equipment)
     {
-        $equipment->update( $request->except('_token', '_method') );
+        $equipment->updateEquipment( $request->except('_token', '_method') );
 
         return redirect()->route('admin.equipments.edit', $equipment->id );
     }

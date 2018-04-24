@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role', 'mobile', 'institute_id'
     ];
 
     /**
@@ -26,4 +26,36 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getUsersPaginated( $page = 20 )
+    {
+        return $this->latest('created_at')->paginate( 20 ); 
+    }
+
+    public function getInstituteSpecificUsersPaginated( $institute_id, $page = 20 )
+    {
+        return $this->where('institute_id',  $institute_id )->latest('created_at')->paginate( 20 );
+    }
+
+    public function createUser($data)
+    {
+        $user_data = [
+
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt( $data['password']),
+            'role'  => $data['role'],
+            'institute_id' => in_array('institute_id', $data) ? $data['institute_id'] : NULL
+        ];
+
+        return static::create( $user_data );
+    }
+
+    public function updateUser($data)
+    {
+        if( ! $data['password'] ) {
+            unset( $data['password'] );
+        }
+        return $this->update( $data );
+    }
 }

@@ -7,6 +7,9 @@
 
 	<h1 class="mb-8">
 		List of Users
+		<a href="{{ route('admin.users.create') }}" class="text-right bg-blue-light text-white text-sm py-1 px-1">
+            Create
+        </a>
   	</h1>
 
 	<table class="table text-left w-full">
@@ -45,8 +48,7 @@
 		    	</td>
 		    	<td class="p-4 w-1/4"> {{ $user->created_at->format('d M Y H:i:s') }}</td>
 		    	<td class="p-4 w-1/4">
-		    		<button type="button" class="bg-blue-light text-white text-sm py-1 px-1">Edit</button>
-		    		<button type="button" class="bg-blue text-white text-sm py-1 px-1">Change Role</button>
+		    		 <a href="{{ route('admin.users.edit', $user->id) }}" class="bg-blue-light text-white text-sm py-1 px-1">Edit</a>
 		    	</td>
 		    </tr>
 		    @endforeach

@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users,email,'.$this->route('user')->id,
+            // 'password' => 'string|min:6|confirmed',
+            'mobile'   => 'required|numeric|digits_between:10,11|unique:users,mobile,'.$this->route('user')->id,
+            'role'     => 'required|string'
         ];
     }
 }

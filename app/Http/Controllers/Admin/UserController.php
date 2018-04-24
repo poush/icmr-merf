@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Institute;
+use App\Http\Requests\User\CreateRequest;
+use App\Http\Requests\User\UpdateRequest;
 
 class UserController extends Controller
 {
@@ -15,7 +18,15 @@ class UserController extends Controller
      */
     public function index(User $user)
     {
-        $users = $user->paginate(20);
+        $auth_user = auth()->user();
+
+        // $this->authorize( 'index', User::class);
+
+        if ( $auth_user->role == 'admin' ) {
+            $users = $user->getUsersPaginated(20);
+        } else {            
+            $users = $user->getInstituteSpecificUsersPaginated( $auth_user->institute_id, 20 );
+        }
 
         return view('admin.users.index', compact( 'users') );
     }
@@ -27,7 +38,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $institutes = Institute::pluck('name', 'id');
+        return view('admin.users.create', compact( 'institutes') );
     }
 
     /**
@@ -37,9 +49,11 @@ class UserController extends Controller
      * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(CreateRequest $request, User $user)
     {
-        //
+        $user = $user->createUser( $request->except( '_token') );
+
+        return redirect()->route('admin.users.edit', $user->id );
     }
 
     /**
@@ -50,7 +64,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view( 'admin.users.show', compact( 'users') );
     }
 
     /**
@@ -61,7 +75,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $institutes = Institute::pluck('name', 'id');
+
+        return view( 'admin.users.edit', compact( 'user', 'institutes') );
     }
 
     /**
@@ -71,9 +87,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateRequest $request, User $user)
     {
-        //
+        $user->updateUser( $request->except('_method', '_token') );
+
+        return redirect()->route('admin.users.edit', $user->id );
     }
 
     /**
@@ -84,6 +102,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+
     }
 }

@@ -40,11 +40,6 @@ class UserController extends Controller
     {        
         // $this->authorize( 'create', User::class);
 
-        // if( ( $loggedin_user->role == 'institute' ) && ( $loggedin_user->institute_id != $institute_id ) )
-        // {
-        //     return abort('401', "Not authorize to create admin for this user");
-        // }
-
         if( $institute_id ) {
             $institute  = Institute::findOrFail( $institute_id );
             $institutes = NULL;
@@ -54,7 +49,17 @@ class UserController extends Controller
             $institutes = Institute::pluck('name', 'id');
         }
 
-        return view('admin.users.create', compact( 'institutes', 'institute' ) );
+        $roles = config('mapping.roles', []);
+
+        if( auth()->user()->role == 'institute')
+        {
+            $roles = collect($roles)->filter(function( $v, $k)
+                     {
+                        return in_array($k, [ 'institute', 'editor'] );
+                     })->all();
+        }
+
+        return view('admin.users.create', compact( 'institutes', 'institute', 'roles') );
     }
 
     /**
@@ -71,7 +76,7 @@ class UserController extends Controller
         // if( in_array( $login_user->role, [ 'super-admin', 'institute' ] ) ) {
         //     $request->setOffset('institute_id', $login_user->institute_id );
         // }
-        // 
+        
         $user = $user->createUser( $request->except( '_token') );
 
         return redirect()->route('admin.users.edit', $user->id )
@@ -100,7 +105,16 @@ class UserController extends Controller
     {
         $institutes = Institute::pluck('name', 'id');
 
-        return view( 'admin.users.edit', compact( 'user', 'institutes') );
+        $roles = config('mapping.roles', []);
+        if( auth()->user()->role == 'institute')
+        {
+            $roles = collect($roles)->filter(function( $v, $k)
+                     {
+                        return in_array($k, [ 'institute', 'editor'] );
+                     })->all();
+        }
+
+        return view( 'admin.users.edit', compact( 'user', 'institutes', 'roles') );
     }
 
     /**

@@ -45,7 +45,7 @@ class User extends Authenticatable
             'email' => $data['email'],
             'password' => bcrypt( $data['password']),
             'role'  => $data['role'],
-            'institute_id' => in_array('institute_id', $data) ? $data['institute_id'] : NULL,
+            'institute_id' => isset($data['institute_id'] ) ? (int) $data['institute_id'] : auth()->user()->institute_id,
             'mobile'    => $data['mobile']
         ];
 
@@ -56,6 +56,8 @@ class User extends Authenticatable
     {
         if( ! $data['password'] ) {
             unset( $data['password'] );
+        } else {
+            $data['password'] = bcrypt( $data['password'] );
         }
         return $this->update( $data );
     }

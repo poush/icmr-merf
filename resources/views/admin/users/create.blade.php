@@ -44,7 +44,7 @@
                             <div class="flex flex-col w-3/4">
                                 <select name="role" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow" onchange="if( this.value == 'institute' || this.value == 'editor' ) { document.getElementById('institute_selector').style.display = '' } else { document.getElementById('institute_selector').style.display = 'none'}" >
                                     <option value="">Select</option>
-                                    @foreach( config('mapping.roles') as $r_value => $role_name )
+                                    @foreach( $roles as $r_value => $role_name )
                                     <option value="{{ $r_value }}">{{ $role_name }}</option>
                                     @endforeach
                                 </select>
@@ -56,7 +56,7 @@
                             <input type="hidden" name="role" value="institute">
                         @endif
 
-                        @if( $institutes )
+                        @if( $institutes && auth()->user()->isSuperAdmin() )
                         <div class="flex items-stretch mb-3" style="display: none" id="institute_selector">
                             <label for="city" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Select Institute</label>
                             <div class="flex flex-col w-3/4">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         @else
-                            <input type="hidden" name="institute_id" value="{{ $institute->id }}">
+                            <input type="hidden" name="institute_id" value="{{ $institute->id or auth()->user()->institute_id }}">
                         @endif
 
                         <div class="flex items-stretch mb-4">

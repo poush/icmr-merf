@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <div class="flex items-stretch mb-3" style="display: none" id="institute_selector">
+                        <div class="flex items-stretch mb-3" style="@if( ! $user->institute_id ) display: none @endif" id="institute_selector">
                             <label for="city" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Select Institute</label>
                             <div class="flex flex-col w-3/4">
                                 <select name="institute_id" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow" >

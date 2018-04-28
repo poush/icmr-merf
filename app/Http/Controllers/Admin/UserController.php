@@ -22,7 +22,7 @@ class UserController extends Controller
 
         // $this->authorize( 'index', User::class);
 
-        if ( $auth_user->role == 'admin' ) {
+        if ( $auth_user->role == 'super-admin' ) {
             $users = $user->getUsersPaginated(20);
         } else {            
             $users = $user->getInstituteSpecificUsersPaginated( $auth_user->institute_id, 20 );
@@ -36,10 +36,25 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $institutes = Institute::pluck('name', 'id');
-        return view('admin.users.create', compact( 'institutes') );
+    public function create($institute_id = NULL )
+    {        
+        // $this->authorize( 'create', User::class);
+
+        // if( ( $loggedin_user->role == 'institute' ) && ( $loggedin_user->institute_id != $institute_id ) )
+        // {
+        //     return abort('401', "Not authorize to create admin for this user");
+        // }
+
+        if( $institute_id ) {
+            $institute  = Institute::findOrFail( $institute_id );
+            $institutes = NULL;
+        }
+        else { 
+            $institute  = NULL;
+            $institutes = Institute::pluck('name', 'id');
+        }
+
+        return view('admin.users.create', compact( 'institutes', 'institute' ) );
     }
 
     /**
@@ -51,9 +66,17 @@ class UserController extends Controller
      */
     public function store(CreateRequest $request, User $user)
     {
+        $login_user = auth()->user();
+
+        // if( in_array( $login_user->role, [ 'super-admin', 'institute' ] ) ) {
+        //     $request->setOffset('institute_id', $login_user->institute_id );
+        // }
+        // 
         $user = $user->createUser( $request->except( '_token') );
 
-        return redirect()->route('admin.users.edit', $user->id );
+        return redirect()->route('admin.users.edit', $user->id )
+                    ->withMessage('User Created Successfully');
+
     }
 
     /**
@@ -91,7 +114,8 @@ class UserController extends Controller
     {
         $user->updateUser( $request->except('_method', '_token') );
 
-        return redirect()->route('admin.users.edit', $user->id );
+        return redirect()->route('admin.users.edit', $user->id )
+                    ->withMessage('User Updated Successfully');
     }
 
     /**

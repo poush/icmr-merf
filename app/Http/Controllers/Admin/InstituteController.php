@@ -43,7 +43,9 @@ class InstituteController extends Controller
     {
         $institute = $institute->createInstitute( $request->except('_token') );
 
-        return redirect( 'admin.institutes.edit', $institute->id);
+        return redirect( 'admin.institutes.edit', $institute->id)
+                    ->withMessage('Institute Created Successfully');
+
     }
 
     /**
@@ -79,7 +81,8 @@ class InstituteController extends Controller
     {
         $institute->updateInstitute( $request->except('_token', '_method') );
 
-        return redirect()->route('admin.institutes.edit', $institute->id );
+        return redirect()->route('admin.institutes.edit', $institute->id )
+                    ->withMessage('Institute Updated Successfully');
     }
 
     /**

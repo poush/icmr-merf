@@ -43,7 +43,9 @@ class EquipmentController extends Controller
     {
         $equipment = $equipment->createEquipment( $request->except('_token') );
 
-        return redirect()->route('admin.equipments.edit', $equipment->id);
+        return redirect()->route('admin.equipments.edit', $equipment->id)
+                    ->withMessage('Equipment Created Successfully');
+        ;
     }
 
     /**
@@ -79,7 +81,9 @@ class EquipmentController extends Controller
     {
         $equipment->updateEquipment( $request->except('_token', '_method') );
 
-        return redirect()->route('admin.equipments.edit', $equipment->id );
+        return redirect()->route('admin.equipments.edit', $equipment->id )
+                    ->withMessage('Equipment Updated Successfully');
+        ;
     }
 
     /**

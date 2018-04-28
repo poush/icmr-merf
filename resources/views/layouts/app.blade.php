@@ -50,9 +50,13 @@
         </nav>
 
 
-        
+        @if( session()->has('message') )
+        <div class="bg-blue-lightest border-t border-b border-blue text-blue-dark px-4 py-3" role="alert">
+          <p class="font-bold"></p>
+          <p class="text-sm">{{ session('message') }}</p>
+        </div>
+        @endif
 
-        
 
         @yield('content')
     </div>

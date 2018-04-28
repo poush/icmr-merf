@@ -33,6 +33,7 @@
                 <td class="p-4 w-1/4">
                     <a href="{{ route('admin.institutes.edit', $institute->id) }}" class="bg-blue-light text-white text-sm py-1 px-1">Edit</a>
                     <a href="{{ route('admin.institutes.show', $institute->id) }}" class="bg-blue text-white text-sm py-1 px-1">Show</a>
+                    <a href="{{ route('admin.users.create-admin', $institute->id) }}" class="bg-blue text-white text-sm py-1 px-1">Add Admin</a>
                 </td>
             </tr>
             @endforeach

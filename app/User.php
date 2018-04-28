@@ -45,7 +45,8 @@ class User extends Authenticatable
             'email' => $data['email'],
             'password' => bcrypt( $data['password']),
             'role'  => $data['role'],
-            'institute_id' => in_array('institute_id', $data) ? $data['institute_id'] : NULL
+            'institute_id' => in_array('institute_id', $data) ? $data['institute_id'] : NULL,
+            'mobile'    => $data['mobile']
         ];
 
         return static::create( $user_data );
@@ -57,5 +58,25 @@ class User extends Authenticatable
             unset( $data['password'] );
         }
         return $this->update( $data );
+    }
+
+    public function isSuperAdmin()
+    {
+        return ( $this->role == 'super-admin' ) ? true : false;
+    }
+
+    public function isInstituteAdmin()
+    {
+        return ( $this->role == 'institute') ? true : false;
+    }
+
+    public function isInstituteEditor()
+    {
+        return ( $this->role == 'editor') ? true : false;
+    }
+
+    public function isNormalUser()
+    {
+        return ( $this->role == 'user' ) ? true : false;
     }
 }

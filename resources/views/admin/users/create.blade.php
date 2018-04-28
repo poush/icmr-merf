@@ -7,7 +7,7 @@
         <div class="md:w-1/2 md:mx-auto">
             <div class="rounded shadow">
                 <div class="font-medium text-lg text-brand-darker bg-brand-lighter p-3 rounded-t">
-                    Create A User
+                    Create @if( $institute ) an admin for Institute: <strong>{{ $institute->name }}</strong> @else a User @endif
                 </div>
                 <div class="bg-white p-3 rounded-b">
                     <form class="form-horizontal" method="POST" action="{{ route('admin.users.store') }}">
@@ -37,6 +37,8 @@
                             </div>
                         </div>
 
+                        @if( $institutes )
+
                         <div class="flex items-stretch mb-3">
                             <label for="role" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Select Role</label>
                             <div class="flex flex-col w-3/4">
@@ -50,6 +52,11 @@
                             </div>
                         </div>
 
+                        @else
+                            <input type="hidden" name="role" value="institute">
+                        @endif
+
+                        @if( $institutes )
                         <div class="flex items-stretch mb-3" style="display: none" id="institute_selector">
                             <label for="city" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Select Institute</label>
                             <div class="flex flex-col w-3/4">
@@ -62,6 +69,9 @@
                                 {!! $errors->first('is_working', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
                             </div>
                         </div>
+                        @else
+                            <input type="hidden" name="institute_id" value="{{ $institute->id }}">
+                        @endif
 
                         <div class="flex items-stretch mb-4">
                             <label for="password" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Password</label>

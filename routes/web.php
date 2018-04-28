@@ -29,6 +29,8 @@ Route::resource('equipments', 'EquipmentController')->only([
 Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware'=> ['auth']], function(){
 
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+	Route::get('users/create/{institute_id}/{type?}', 'UserController@create')->name('users.create-admin');
 	Route::resource('users', 'UserController');
 	Route::resource('institutes', 'InstituteController');
 	Route::resource('equipments', 'EquipmentController');

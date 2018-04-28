@@ -19,7 +19,7 @@
     
     <div class="w-full block text-right flex-grow lg:flex lg:items-center lg:w-auto">
 
-        @if( auth()->guest() || !request()->route()->named('admin*') )
+        @if( !request()->route()->named('admin*') )
 
         <div class="text-sm lg:flex-grow">
             <a href="{{ route('home') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
@@ -35,9 +35,20 @@
                 Help
             </a>
 
-            <a href="{{ route('admin.dashboard') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter">
+            @guest
+                <a class="no-underline hover:underline text-white pr-3 text-sm" href="{{ url('/login') }}">Login</a>
+                <a class="no-underline hover:underline text-white text-sm" href="{{ url('/register') }}">Register</a>
+            @else
+            <a href="{{ route('admin.dashboard') }}" class="no-underline hover:underline text-white text-sm mr-3">
                 Dashboard
             </a>
+            
+            <span class="text-grey-darker text-sm" style="float: right">Hi, {{ Auth::user()->name }}</span><br/>
+            <a href="{{ route('logout') }}" class="no-underline hover:underline text-white text-sm" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">                
+                Logout
+            </a>
+            @endif
         </div>
 
         @endif 
@@ -65,9 +76,19 @@
             </a>
             @endcan
             
-            <a href="{{ route('home') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter">
+            <a href="{{ route('home') }}" class="no-underline hover:underline text-white text-sm mr-3">
                 Website
             </a>
+
+            <span class="text-grey-darker text-sm" style="float: right">Hi, {{ Auth::user()->name }}</span><br/>
+
+            <a href="{{ route('logout') }}" class="no-underline hover:underline text-white text-sm" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                {{ csrf_field() }}
+            </form>
         </div>
 
         @endif

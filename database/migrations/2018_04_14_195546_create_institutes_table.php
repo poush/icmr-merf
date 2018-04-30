@@ -20,6 +20,9 @@ class CreateInstitutesTable extends Migration
             $table->string('slug')->unique();
             $table->string('city')->nullable();
 
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+
             $table->timestamps();
         });
     }

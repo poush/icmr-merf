@@ -17,6 +17,11 @@ class Equipment extends Model
             ->withPivot(['lab']);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function availability()
     {
         return $this->hasMany(EquipmentAvailability::class);

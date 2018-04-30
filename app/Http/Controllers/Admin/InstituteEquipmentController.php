@@ -65,7 +65,10 @@ class InstituteEquipmentController extends Controller
         $equipment = $institute->equipments()->where('equipment_id', $id)->first();
 
         $equipments = Equipment::pluck( 'name', 'id');
-        return view('admin.institutes.equipments.edit', compact( 'equipment', 'equipments' ) );
+
+        $equipmentAvailability = $institute->equipmentAvailability()->where('equipment_id', $id)->get();
+
+        return view('admin.institutes.equipments.edit', compact( 'equipment', 'equipments', 'equipmentAvailability' ) );
     }
 
     /**
@@ -79,7 +82,7 @@ class InstituteEquipmentController extends Controller
     {
         $institute = auth()->user()->institute;
 
-        $institute->addEquipment( $request->except('_token') );
+        $institute->updateEquipment( $request->except('_token', '_method') + ['equipment_id' => $id ] );
 
         return redirect()->route('admin.institute-equipments.edit', $id )
                     ->withMessage('Institute Equipment Updated Successfully');

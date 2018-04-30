@@ -38,5 +38,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('manage-institutes', function ($user) {
             return in_array($user->role, [ 'super-admin' ] );
         });
+
+        Gate::define('manage-categories', function ($user) {
+            return in_array($user->role, [ 'super-admin' ] );
+        });
     }
 }

@@ -8,7 +8,7 @@ class Equipment extends Model
 {
     protected $table = 'equipments';
 
-    protected $fillable = [ 'name', 'manufacturer', 'model', 'quantity', 'extra', 'features', 'working', 'operation', 'description', 'is_working', 'health_problems', 'training_requirement', 'machine_rest', 'location', 'specs' ];
+    protected $fillable = [ 'category_id', 'name', 'manufacturer', 'model', 'quantity', 'extra', 'features', 'working', 'operation', 'description', 'is_working', 'health_problems', 'training_requirement', 'machine_rest', 'location', 'specs' ];
 
     public function institutes()
     {

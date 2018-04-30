@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Equipment;
+use App\Category;
 use App\Http\Requests\Equipment\CreateRequest;
 use App\Http\Requests\Equipment\UpdateRequest;
 
@@ -18,7 +19,14 @@ class EquipmentController extends Controller
      */
     public function index(Equipment $equipment)
     {
-        $equipments = $equipment->paginate(20);
+        if( auth()->user()->role == 'super-admin')
+        {
+            $equipments = $equipment->paginate( 20 );
+
+        } else {
+
+            $equipments = auth()->user()->institute->equipments()->paginate( 20 );
+        }
 
         return view('admin.equipments.index', compact( 'equipments') );
     }
@@ -30,7 +38,8 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        return view('admin.equipments.create');
+        $categories = Category::pluck( 'name', 'id');
+        return view('admin.equipments.create', compact( 'categories') );
     }
 
     /**
@@ -67,7 +76,9 @@ class EquipmentController extends Controller
      */
     public function edit(Equipment $equipment)
     {
-        return view('admin.equipments.edit', compact( 'equipment') );
+        $categories = Category::pluck( 'name', 'id');
+
+        return view('admin.equipments.edit', compact( 'equipment', 'categories') );
     }
 
     /**

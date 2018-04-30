@@ -8,9 +8,18 @@
 	<h1 class="mb-8">
 		List of equipments
 
-		 <a href="{{ route('admin.equipments.create') }}" class="text-right bg-blue-light text-white text-sm py-1 px-1">
+        @if( auth()->user()->isSuperAdmin() )
+		<a href="{{ route('admin.equipments.create') }}" class="text-right bg-blue-light text-white text-sm py-1 px-1">
             Create
         </a>
+        @endif
+
+        @if( auth()->user()->isInstituteAdmin() || auth()->user()->isInstituteEditor() )
+
+        <a href="{{ route('admin.institute-equipments.create') }}" class="text-right bg-blue-light text-white text-sm py-1 px-1">
+            Add Equipment
+        </a>
+        @endif
   	</h1>
 
 	<table class="table text-left w-full">
@@ -40,8 +49,16 @@
 
 		    	<td class="p-4 w-1/6"> {{ $equipment->created_at->format('d M Y H:i:s') }}</td>
 		    	<td class="p-4 w-1/6">
-		    		 <a href="{{ route('admin.equipments.edit', $equipment->id) }}" class="bg-blue-light text-white text-sm py-1 px-1">Edit</a>
+                    @if( auth()->user()->isSuperAdmin() )
+		    		<a href="{{ route('admin.equipments.edit', $equipment->id) }}" class="bg-blue-light text-white text-sm py-1 px-1">Edit</a>
+                    @endif
+
                     <a href="{{ route('admin.equipments.show', $equipment->id) }}" class="bg-blue text-white text-sm py-1 px-1">Show</a>
+
+                    @if( auth()->user()->isInstituteAdmin() || auth()->user()->isInstituteEditor() )
+                        <a href="{{ route('admin.institute-equipments.edit', $equipment->id) }}" class="bg-blue-dark text-white text-sm py-1 px-1">Update</a>
+                    @endif
+
 		    	</td>
 		    </tr>
 		    @endforeach

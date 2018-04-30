@@ -57,6 +57,12 @@
                         </a>
                     @endcan
 
+                    @can('manage-categories')
+                    <a href="{{ route('admin.categories.index') }}" class="block mt-4 lg:inline-block lg:mt-0 text-blue-dark no-underline text-lg hover:text-black mr-6">
+                        Categories
+                    </a>
+                    @endcan
+
                     @can('manage-equipments')
                     <a href="{{ route('admin.equipments.index') }}" class="block mt-4 lg:inline-block lg:mt-0 text-blue-dark no-underline text-lg hover:text-black mr-6">
                         Equipments

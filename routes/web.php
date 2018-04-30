@@ -46,4 +46,8 @@ Route::group([
     Route::resource('users', 'UserController');
     Route::resource('institutes', 'InstituteController');
     Route::resource('equipments', 'EquipmentController');
+	Route::resource('institute-equipments', 'InstituteEquipmentController')->except('index', 'show');
+
+    Route::resource('categories', 'CategoryController');
+
 });

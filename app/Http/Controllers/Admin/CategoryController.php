@@ -5,22 +5,22 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Institute;
-use App\Http\Requests\Institute\CreateRequest;
-use App\Http\Requests\Institute\UpdateRequest;
+use App\Category;
+use App\Http\Requests\Category\CreateRequest;
+use App\Http\Requests\Category\UpdateRequest;
 
-class InstituteController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Institute $institute)
+    public function index(Category $category)
     {
-        $institutes = $institute->paginate(20);
+        $categories = $category->paginate(20);
 
-        return view('admin.institutes.index', compact( 'institutes') );
+        return view('admin.categories.index', compact( 'categories') );
     }
 
     /**
@@ -30,7 +30,7 @@ class InstituteController extends Controller
      */
     public function create()
     {
-        return view('admin.institutes.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -39,12 +39,12 @@ class InstituteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateRequest $request, Institute $institute)
+    public function store(CreateRequest $request, Category $category)
     {
-        $institute = $institute->createInstitute( $request->except('_token') );
+        $category = $category->createCategory( $request->except('_token') );
 
-        return redirect()->route()->( 'admin.institutes.edit', $institute->id)
-                    ->withMessage('Institute Created Successfully');
+        return redirect()->route( 'admin.categories.edit', $category->id)
+                    ->withMessage('Category Created Successfully');
 
     }
 
@@ -54,9 +54,9 @@ class InstituteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Institute $institute)
+    public function show(Category $category)
     {
-        return view('admin.institutes.show', compact( 'institute') );
+        return view('admin.categories.show', compact( 'category') );
     }
 
     /**
@@ -65,9 +65,9 @@ class InstituteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Institute $institute)
+    public function edit(Category $category)
     {
-        return view('admin.institutes.edit', compact( 'institute') );
+        return view('admin.categories.edit', compact( 'category') );
     }
 
     /**
@@ -77,12 +77,12 @@ class InstituteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, Institute $institute)
+    public function update(UpdateRequest $request, Category $category)
     {
-        $institute->updateInstitute( $request->except('_token', '_method') );
+        $category->updateCategory( $request->except('_token', '_method') );
 
-        return redirect()->route('admin.institutes.edit', $institute->id )
-                    ->withMessage('Institute Updated Successfully');
+        return redirect()->route('admin.categories.edit', $category->id )
+                    ->withMessage('Category Updated Successfully');
     }
 
     /**

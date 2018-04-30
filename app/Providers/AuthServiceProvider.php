@@ -15,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'App\Equipment' => 'App\Policies\Equipment',
         'App\Institute' => 'App\Policies\Institute',
-        'App\User'      => 'App\Policies\User',
+        'App\User'      => 'App\Policies\UserPolicy',
     ];
 
     /**
@@ -36,6 +36,10 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('manage-institutes', function ($user) {
+            return in_array($user->role, [ 'super-admin' ] );
+        });
+
+        Gate::define('manage-categories', function ($user) {
             return in_array($user->role, [ 'super-admin' ] );
         });
     }

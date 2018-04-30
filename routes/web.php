@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/about', 'HomeController@index')->name('about');
+Route::get('about', 'HomeController@about')->name('about');
 Route::get('/help', 'HomeController@index')->name('help');
 Route::get('/terms', 'HomeController@index')->name('terms');
 Route::get('/privacy', 'HomeController@index')->name('privacy');

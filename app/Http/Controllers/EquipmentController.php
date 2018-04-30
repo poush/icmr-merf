@@ -64,7 +64,8 @@ class EquipmentController extends Controller
                 },
                 'availability' => function ($query) use ($request) {
                     $query->where('institute_id', $request->get('institute'));
-                }
+                },
+                'category'
             ]);
 
         $equipment->availability = $equipment->availability->transform(function ($available) {

@@ -16,7 +16,7 @@ class CreateEquipmentTable extends Migration
         Schema::create('equipments', function (Blueprint $table) {
             $table->increments('id');
 
-            // $table->unsignedInteger('institude_id');
+            $table->unsignedInteger('category_id');
             $table->string('name');
             $table->string('manufacturer');
             $table->string('model');

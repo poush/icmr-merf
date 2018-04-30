@@ -32,6 +32,12 @@
  * @import "components/forms";
  */
 
+input:focus { 
+    outline: none !important;
+    border-color: transparent;
+    box-shadow: none;
+}
+
 body { 
     font-family: 'Roboto', sans-serif;
     font-weight: 300;

@@ -2,23 +2,9 @@
 
 @section('content')
 
-<div class="container p-6">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+<div class="p-16 m-20 text-center">
+    <div class="p-16 bg-grey-light">
+        <h2 class="text-3xl m-20">Coming Soon!</h2>
     </div>
 </div>
 

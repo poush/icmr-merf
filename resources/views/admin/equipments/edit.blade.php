@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container mt-6">
+<div class="container my-24 mx-auto">
     <div class="flex items-center">
         <div class="md:w-1/2 md:mx-auto">
             <div class="rounded shadow">

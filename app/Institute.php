@@ -41,8 +41,39 @@ class Institute extends Model
 
     public function updateEquipment( $data )
     {
-        return $this->equipments()->syncWithoutDetaching( [ 
+        $update_equipment = $this->equipments()->syncWithoutDetaching( [ 
                                         $data['equipment_id'] => [ 'lab' => $data['lab' ] ] 
                                     ] );
+
+        // Availability to be updated.
+        foreach( $data['from_date_exist'] as $id => $from )
+        {
+            EquipmentAvailability::where( 'id', $id )->update([
+                'from'      => date('Y-m-d H:i:s', strtotime( $from ) ),
+                'to'      => date('Y-m-d H:i:s', strtotime( $data['to_date_exist'][ $id ] ) ),                
+                'added_by'  => auth()->user()->id
+
+            ]);
+        }
+
+        // Availability to be added.
+        if( isset( $data['from'] ) && is_array( $data['from'] ) )
+        {
+            foreach( $data['from'] as $index => $from )
+            {
+                $this->equipmentAvailability()->create(  
+                                                        [ 
+                                                            'equipment_id' => $data['equipment_id'],
+                                                            'from' => date('Y-m-d H:i:s', strtotime( $from )),
+                                                            'to'      => date('Y-m-d H:i:s', strtotime( $data['to'][ $index ] ) ),                
+                                                            'added_by'  => auth()->user()->id
+                                                        ] );
+            }
+        }
+    }
+
+    public function equipmentAvailability()
+    {
+         return $this->hasMany(EquipmentAvailability::class);
     }
 }

@@ -16,13 +16,15 @@
                         <div class="flex items-stretch mb-3">
                             <label for="name" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Name</label>
                             <div class="flex flex-col w-3/4">
-                                <select name="equipment_id" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow">
+                                <select name="equipment_id" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow" required>
                                     <option value="">Select</option>
 
                                     @foreach( $equipments as $r_value => $name )
                                     <option value="{{ $r_value }}" @if(old( 'equipment_id' ) == $r_value ) selected @endif >{{ $name }}</option>
                                     @endforeach
                                 </select>
+                                {!! $errors->first('equipment_id', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+
                             </div>
                         </div>
 

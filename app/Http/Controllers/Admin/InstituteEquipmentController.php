@@ -81,7 +81,7 @@ class InstituteEquipmentController extends Controller
 
         $institute->addEquipment( $request->except('_token') );
 
-        return redirect()->route('admin.institutes.equipments.edit', $id )
+        return redirect()->route('admin.institute-equipments.edit', $id )
                     ->withMessage('Institute Equipment Updated Successfully');
         ;
     }

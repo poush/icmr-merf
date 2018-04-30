@@ -20,7 +20,7 @@
                     class="px-6 py-3 border-b border-grey-light hover:bg-grey-lightest" 
                     v-for="institute in equipment.institutes">
                     {{ institute.name }}
-                    <span class="float-right bg-grey-light rounded-full px-2 py-1 text-xs" v-on:click="bookEquipment(equipment, institute)">Book</span>
+                    <span class="float-right cursor-pointer bg-grey-light rounded-full px-2 py-1 text-xs" v-on:click="bookEquipment(equipment, institute)">Book</span>
                 </li>
             </ul>
 

@@ -18,7 +18,14 @@ class EquipmentController extends Controller
      */
     public function index(Equipment $equipment)
     {
-        $equipments = $equipment->paginate(20);
+        if( auth()->user()->role == 'super-admin')
+        {
+            $equipments = $equipment->paginate( 20 );
+
+        } else {
+
+            $equipments = auth()->user()->institute->equipments()->paginate( 20 );
+        }
 
         return view('admin.equipments.index', compact( 'equipments') );
     }

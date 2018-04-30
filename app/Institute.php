@@ -31,4 +31,18 @@ class Institute extends Model
     {
         return $this->update($data);
     }
+
+    public function addEquipment( $data )
+    {
+        return $this->equipments()->syncWithoutDetaching( [ 
+                                        $data['equipment_id'] => [ 'lab' => $data['lab' ] ] 
+                                    ] );
+    }
+
+    public function updateEquipment( $data )
+    {
+        return $this->equipments()->syncWithoutDetaching( [ 
+                                        $data['equipment_id'] => [ 'lab' => $data['lab' ] ] 
+                                    ] );
+    }
 }

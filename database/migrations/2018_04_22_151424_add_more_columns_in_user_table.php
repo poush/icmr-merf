@@ -14,10 +14,9 @@ class AddMoreColumnsInUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            
-            $table->string('mobile',15)->nullable()->unique();
-            $table->string('role',20)->default('user');  
-            $table->unsignedInteger('institute_id')->nullable();
+            $table->string('mobile', 15)->nullable()->unique()->after('name');
+            $table->string('role', 20)->default('user')->after('password');
+            $table->unsignedInteger('institute_id')->nullable()->after('role');
         });
     }
 
@@ -29,7 +28,7 @@ class AddMoreColumnsInUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumns(['mobile', 'role', 'institute_id']);
         });
     }
 }

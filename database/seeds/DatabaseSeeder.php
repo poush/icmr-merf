@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
-        factory(App\Institute::class, 10)->create();
+        factory(App\Institute::class, 10)->create()->each(function ($institute) {
+            $institute->users()->saveMany(factory(App\User::class, 3)->make());
+        });
 
         factory(App\Equipment::class, 50)->create()->each(function ($equipment) {
             $institutes = App\Institute::inRandomOrder()

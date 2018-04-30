@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Institute extends Model
 {
-	protected $fillable = [ 'name', 'city', 'slug'];
+    protected $fillable = ['name', 'city', 'slug'];
 
     public function equipments()
     {
@@ -15,15 +15,20 @@ class Institute extends Model
             ->withPivot(['lab']);
     }
 
-    public function createInstitute( $data )
+    public function users()
     {
-    	$data['slug']  = str_slug( $data['name'] );
-
-    	return static::create( $data );
+        return $this->hasMany(User::class);
     }
 
-    public function updateInstitute( $data )
+    public function createInstitute($data)
     {
-    	return $this->update( $data );
+        $data['slug'] = str_slug($data['name']);
+
+        return static::create($data);
+    }
+
+    public function updateInstitute($data)
+    {
+        return $this->update($data);
     }
 }

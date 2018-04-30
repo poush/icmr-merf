@@ -17,12 +17,19 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/about', 'HomeController@index')->name('about');
 Route::get('/help', 'HomeController@index')->name('help');
+Route::get('/terms', 'HomeController@index')->name('terms');
+Route::get('/privacy', 'HomeController@index')->name('privacy');
+Route::get('/contact', 'HomeController@index')->name('contact');
 
 // Route::group(['prefix' => 'equipments', 'as' => 'equipments'], function () {
 //     Route::get('/', 'EquipmentController@index');
 // });
 
 Route::resource('equipments', 'EquipmentController')->only([
+    'index', 'show'
+]);
+
+Route::resource('institutes', 'EquipmentController')->only([
     'index', 'show'
 ]);
 

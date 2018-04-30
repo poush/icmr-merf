@@ -59,6 +59,49 @@
 
 
         @yield('content')
+
+        <footer class="containe bg-blue-darkest text-grey p-16">
+            <div class="sm:flex mb-4">
+                <div class="sm:w-1/3 h-auto">
+                    Indian Council of Medical Research
+                </div>
+                <div class="sm:w-1/5 h-auto sm:mt-0 mt-8">
+                    <ul class="list-reset leading-normal">
+                        <li class="">
+                            <a href="{{ route('home') }}" class="hover:text-grey-light text-grey-dark no-underline">Home</a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('equipments.index') }}" class="hover:text-grey-light text-grey-dark no-underline">Equipments</a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('institutes.index') }}" class="hover:text-grey-light text-grey-dark no-underline">Institutes</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sm:w-1/5 h-auto sm:mt-0 mt-8">
+                    <ul class="list-reset leading-normal">
+                        <li class="">
+                            <a href="{{ route('about') }}" class="hover:text-grey-light text-grey-dark no-underline">About MERF</a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('contact') }}" class="hover:text-grey-light text-grey-dark no-underline">Contact</a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('terms') }}" class="hover:text-grey-light text-grey-dark no-underline">Terms</a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('privacy') }}" class="hover:text-grey-light text-grey-dark no-underline">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sm:w-1/3 sm:mt-0 mt-8 h-auto">
+                    <div class="text-red-light mb-2">+91-11-26588895</div>
+                    <p class="text-grey-darker leading-normal">V. Ramalingaswami Bhawan, P.O. Box No. 4911, Ansari Nagar, New Delhi - 110029 </p>
+                </div>
+
+            </div>
+        </footer>
+
     </div>
 
     <!-- Scripts -->

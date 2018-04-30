@@ -10,7 +10,7 @@
     <section class="bg-grey-lightest p-16">
         <div class="">
             <div class="text-center pb-8">
-                <h3 class="text-2xl">ABOUT MERF</h3>
+                <h3 class="text-2xl font-normal">ABOUT MERF</h3>
             </div>
             
             <p class="text-lg">
@@ -23,31 +23,60 @@
         </div>
     </section>
 
-    <section class="bg-white p-16">
+    <section class="bg-white p-16 text-center">
         <div class="">
-            <div class="text-center pb-8">
-                <h3 class="text-2xl">OUR OBJECTIVES</h3>
+            <div class="pb-16">
+                <h3 class="text-2xl font-normal">OUR OBJECTIVES</h3>
             </div>
             
-            <div class="section-content"><div class="objectives"><div class="objective"><div class="objective__content"><i class="ion-information-circled"></i><div class="objective__content-title">Centralized System</div><div class="objective__content-desc">Centralized interoperable system to maintain and track medical equipments to facilitate biomedical research</div></div></div><div class="objective"><div class="objective__content"><i class="ion-information-circled"></i><div class="objective__content-title">Enabling Research</div><div class="objective__content-desc">To provide facilities of sophisticated analytical instruments to scientists and other users from academic institutes, to carry out R&amp;D work.</div></div></div><div class="objective"><div class="objective__content"><i class="ion-information-circled"></i><div class="objective__content-title">Full Accountability</div><div class="objective__content-desc">Integrated platform that provides full accountability and traceability of facilities in an Institute.</div></div></div><div class="objective"><div class="objective__content"><i class="ion-information-circled"></i><div class="objective__content-title">Repository Management</div><div class="objective__content-desc">Effortless healthcare asset management, stock keeping and repository management.</div></div></div><div class="objective"><div class="objective__content"><i class="ion-information-circled"></i><div class="objective__content-title">Easy Access</div><div class="objective__content-desc">To provide scientists with a facility to use equipments not available within their laboratory for research.</div></div></div></div></div></div></section>
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+            <div class="flex flex-wrap justify-center">
+                <div class="w-1/3 px-8 pb-16">
+                    <h4 class="text-green text-xl font-bold pb-4">
+                        Centralized System
+                    </h4>
+                    <p class="">
+                        Centralized interoperable system to maintain and track medical equipments to facilitate biomedical research
+                    </p>
                 </div>
+
+                <div class="w-1/3 px-8 pb-16">
+                    <h4 class="text-green text-xl font-bold pb-4">
+                        Enabling Research
+                    </h4>
+                    <p class="">
+                        To provide facilities of sophisticated analytical instruments to scientists and other users from academic institutes, to carry out R&amp;D work.
+                    </p>
+                </div>
+
+                <div class="w-1/3 px-8 pb-16">
+                    <h4 class="text-green text-xl font-bold pb-4">
+                        Full Accountability
+                    </h4>
+                    <p class="">
+                        Integrated platform that provides full accountability and traceability of facilities in an Institute.
+                    </p>
+                </div>
+
+                <div class="w-1/3 px-8 pb-16">
+                    <h4 class="text-green text-xl font-bold pb-4">
+                        Repository Management
+                    </h4>
+                    <p class="">
+                        Effortless healthcare asset management, stock keeping and repository management.
+                    </p>
+                </div>
+
+                <div class="w-1/3 px-8 pb-16">
+                    <h4 class="text-green text-xl font-bold pb-4">
+                        Easy Access
+                    </h4>
+                    <p class="">
+                        To provide scientists with a facility to use equipments not available within their laboratory for research.
+                    </p>
+                </div>
+                    
             </div>
         </div>
-    </div>
-</div>
+    </section>
+
 @endsection

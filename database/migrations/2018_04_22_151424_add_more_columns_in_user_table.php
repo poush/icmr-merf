@@ -28,7 +28,7 @@ class AddMoreColumnsInUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumns(['mobile', 'role', 'institute_id']);
+            $table->dropColumn(['mobile', 'role', 'institute_id']);
         });
     }
 }

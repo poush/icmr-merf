@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Indian Council of Medical Research | Medical Equipments Repository Facility (MERF)</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">

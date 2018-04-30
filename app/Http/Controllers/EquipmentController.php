@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Institute;
 use App\Equipment;
 use Illuminate\Http\Request;
 
@@ -20,7 +22,9 @@ class EquipmentController extends Controller
             return response()->json($equipment->with('institutes')->get());
         }
 
-        return view('equipments.index');
+        return view('equipments.index')
+            ->with('categories', Category::all(['id', 'name']))
+            ->with('institutes', Institute::all(['id', 'name', 'city']));
     }
 
     /**

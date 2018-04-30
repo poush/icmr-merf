@@ -2,5 +2,8 @@
 
 @section('content')
 
-    <equipment-search></equipment-search>
+    <equipment-search 
+        :categories="{{ $categories }}"
+        :institutes="{{ $institutes }}"
+        ></equipment-search>
 @endsection

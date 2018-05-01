@@ -24,11 +24,17 @@
                         <p v-html="equipment.description"></p>
                     </div>
                     <div class="w-1/2 pl-8">
-                        <div class="border border-grey-light bg-white rounded p-4">
+                        <div class="border border-grey-light bg-white rounded p-4 mb-4">
                             <h4 class="uppercase text-sm mb-3">Institute</h4>
                             <p><strong class="mr-4">Name: </strong>{{ equipment.institutes[0].name }}</p>
                             <p><strong class="mr-4">City: </strong>{{ equipment.institutes[0].city }}</p>
                         </div>
+                        <strong>Specs:</strong> {{ equipment.specs }}<br>
+                        <strong>Features:</strong> {{ equipment.features }}<br>
+                        <strong>Usage Instructions:</strong> {{ equipment.operation }}<br>
+                        <strong>Health Problems:</strong> {{ equipment.health_problems }}<br>
+                        <strong>Machine Rest:</strong> {{ equipment.machine_rest }}<br>
+
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@
 
             @guest
                 <a class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6" href="{{ url('/login') }}">Login</a>
-                <!-- <a class="no-underline hover:underline text-white text-sm" href="{{ url('/register') }}">Register</a> -->
+                <a class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6" href="{{ url('/register') }}">Register</a>
             @else
                 <a class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6" href="{{ route('admin.dashboard') }}">Dashboard</a>
             @endif

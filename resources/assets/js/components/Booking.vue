@@ -24,19 +24,18 @@
                         <p v-html="equipment.description"></p>
                     </div>
                     <div class="w-1/2 pl-8">
-                        <p class="text-lg mb-8">
-                            <strong>Name: </strong>{{ equipment.institutes[0].name }}
-                            <br><br>
-                            <strong>Email: </strong>{{ equipment.institutes[0].email }}
-                            <br><br>
-                            <strong>Phone: </strong>{{ equipment.institutes[0].phone }}
-                        </p>
+                        <div class="border border-grey-light bg-white rounded p-4">
+                            <h4 class="uppercase text-sm mb-3">Institute</h4>
+                            <p><strong class="mr-4">Name: </strong>{{ equipment.institutes[0].name }}</p>
+                            <p><strong class="mr-4">City: </strong>{{ equipment.institutes[0].city }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </section>
         <div class="py-20">
+            <h3 class="text-2xl font-medium text-center mb-16 uppercase">Book equipment</h3>
             <vue-event-calendar 
 
                 :events="equipment.availability">
@@ -45,11 +44,19 @@
                         <!-- In here do whatever you want, make you owner event template -->
                         <div class="wrapper">
                             <h3 class="title">{{ event.from }} - {{ event.to }}</h3>
-                            <p class="time">Add to cart</p>
+                            <p class="time">Book this slot</p>
                         </div>
                     </div>
                 </template>
             </vue-event-calendar>
+        </div>
+
+        <div class="pb-20 text-center">
+            <strong class="text-lg mr-3">Need Help?:</strong> 
+            <span  class="mr-3">
+                <strong>Email: </strong>{{ equipment.institutes[0].email }}
+            </span>
+            <strong>Phone: </strong>{{ equipment.institutes[0].phone }}
         </div>
     </div>
 </template>

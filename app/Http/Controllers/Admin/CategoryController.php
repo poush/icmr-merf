@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index(Category $category)
     {
-        $categories = $category->paginate(20);
+        $categories = $category->with('parent')->paginate(20);
 
         return view('admin.categories.index', compact( 'categories') );
     }
@@ -30,7 +30,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $parent_categories = (new Category)->parentCategories();
+
+        return view('admin.categories.create', compact( 'parent_categories') );
     }
 
     /**
@@ -67,7 +69,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact( 'category') );
+        $parent_categories = (new Category)->parentCategories();
+
+        return view('admin.categories.edit', compact( 'category', 'parent_categories' ) );
     }
 
     /**

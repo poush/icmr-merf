@@ -12,6 +12,8 @@
                 <div class="bg-white p-3 rounded-b">
                     <div class="">
                         <label>Category Name</label> : {{ $category->name }}
+                        <br/>
+                        <label>Parent Category Name</label> : {{ $category->parent->name ?? '-' }}
 
                         <br/>
                     </div>

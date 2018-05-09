@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-	protected $fillable = ['name' ];
+	protected $fillable = ['name', 'parent_id'];
 
     public function createCategory($data)
     {
@@ -16,5 +16,20 @@ class Category extends Model
     public function updateCategory($data)
     {
         return $this->update($data);
+    }
+
+    public function parent()
+    {
+    	return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function children()
+    {
+    	return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function parentCategories()
+    {
+    	return static::where('parent_id', NULL)->get();
     }
 }

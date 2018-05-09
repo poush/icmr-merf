@@ -18,6 +18,8 @@
            <tr class="flex w-full mb-4">
                 <th class="p-4">S.No. </th>
                 <th class="p-4 w-1/3">Name</th>
+                <th class="p-4 w-1/3">Parent Category</th>
+
                 <th class="p-4 w-1/3">Created On</th>
                 <th class="p-4 w-1/3">Action(s)</th>
             </tr>
@@ -27,6 +29,7 @@
             <tr class="flex w-full mb-4 border-b border-grey-light">
                 <th class="p-4">{{ $u + 1 }}</th>
                 <td class="p-4 w-1/3"> {{ $category->name }}</td>
+                <td class="p-4 w-1/3"> {{ $category->parent->name ?? '-' }}</td>
                 <td class="p-4 w-1/3"> {{ $category->created_at->format('d M Y H:i:s') }}</td>
                 <td class="p-4 w-1/3">
                     <a href="{{ route('admin.categories.edit', $category->id) }}" class="bg-blue-light text-white text-sm py-1 px-1">Edit</a>

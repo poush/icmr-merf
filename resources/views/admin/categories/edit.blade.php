@@ -22,6 +22,20 @@
                             </div>
                         </div>
 
+                         <div class="flex items-stretch mb-3">
+                            <label for="name" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Select Parent Category</label>
+                            <div class="flex flex-col w-3/4">
+                                <select name="parent_id" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow">
+                                    <option value="">Select</option>
+
+                                    @foreach( $parent_categories as $r_value => $pcat )
+                                    <option value="{{ $pcat->id }}" @if(old( 'parent_id', $category->parent_id ) == $pcat->id ) selected @endif >{{ $pcat->name }}</option>
+                                    @endforeach
+                                </select>
+                                {!! $errors->first('parent_id', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                            </div>
+                        </div>
+
                         <div class="flex">
                             <div class="w-3/4 ml-auto">
                                 <button type="submit" class="bg-brand hover:bg-brand-dark text-white text-sm font-sembiold py-2 px-4 rounded mr-3">

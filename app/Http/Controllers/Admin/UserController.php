@@ -49,15 +49,7 @@ class UserController extends Controller
             $institutes = Institute::pluck('name', 'id');
         }
 
-        $roles = config('mapping.roles', []);
-
-        if( auth()->user()->role == 'institute')
-        {
-            $roles = collect($roles)->filter(function( $v, $k)
-                     {
-                        return in_array($k, [ 'institute', 'editor'] );
-                     })->all();
-        }
+        $roles = $this->getRoles();
 
         return view('admin.users.create', compact( 'institutes', 'institute', 'roles') );
     }
@@ -92,7 +84,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view( 'admin.users.show', compact( 'users') );
+        return view( 'admin.users.show', compact( 'user') );
     }
 
     /**
@@ -105,14 +97,7 @@ class UserController extends Controller
     {
         $institutes = Institute::pluck('name', 'id');
 
-        $roles = config('mapping.roles', []);
-        if( auth()->user()->role == 'institute')
-        {
-            $roles = collect($roles)->filter(function( $v, $k)
-                     {
-                        return in_array($k, [ 'institute', 'editor'] );
-                     })->all();
-        }
+        $roles = $this->getRoles();
 
         return view( 'admin.users.edit', compact( 'user', 'institutes', 'roles') );
     }
@@ -126,6 +111,13 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, User $user)
     {
+        if( (auth()->user()->role != 'super-admin' ) && ($user->role == 'super-admin') )
+        {
+            return redirect()
+                    ->back()
+                    ->withMessage( 'Super Admin User details can be edited by super admins only' );
+        }
+
         $user->updateUser( $request->except('_method', '_token') );
 
         return redirect()->route('admin.users.edit', $user->id )
@@ -141,5 +133,25 @@ class UserController extends Controller
     public function destroy(User $user)
     {
 
+    }
+
+    /**
+     * List of roles.
+     * 
+     * @return array
+     */
+    private function getRoles()
+    {
+        $roles = config('mapping.roles', []);
+
+        if( auth()->user()->role == 'institute')
+        {
+            $roles = collect($roles)->filter(function( $v, $k)
+                     {
+                        return in_array($k, [ 'institute', 'editor', 'internal'] );
+                     })->all();
+        }
+
+        return $roles;
     }
 }

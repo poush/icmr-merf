@@ -45,6 +45,9 @@
 		    			@case('super-admin')
 		    				<span class="bg-red text-white shadow rounded text-sm py-1 px-1">{{ config('mapping.roles.super-admin') }}</span>
 		    				@break
+		    			@case('internal')
+		    				<span class="bg-blue-light text-white shadow rounded text-sm py-1 px-1">{{ config('mapping.roles.internal') }}</span>
+		    				@break
 		    		 @endswitch
 		    	</td>
 		    	<td class="p-4 w-1/5"> {{ $user->created_at->format('d M Y H:i:s') }}</td>

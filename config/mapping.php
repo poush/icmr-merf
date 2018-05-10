@@ -5,6 +5,7 @@ return [
         'super-admin' => 'Super Admin',
         'institute' => 'Institute Admin',
         'editor' => 'Institue Editor',
-        'user' => 'Normal User'
+        'internal' => 'Internal User',
+        'user' => 'External User'
     ],
 ];

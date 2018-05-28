@@ -24,6 +24,8 @@ class CreateEquipmentAvailabilityTable extends Migration
 
             $table->unsignedInteger('added_by')->nullable();
 
+            $table->integer('availability_type_id')->comment("availibility type id");
+
             $table->timestampsTz();
         });
     }

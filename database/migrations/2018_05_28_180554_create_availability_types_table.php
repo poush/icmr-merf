@@ -7,6 +7,8 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * This table is for availibility types. 
  * A user can add more availibility types.
+ * availibility type "available" will indicate that slot can be booked, in case of others
+ * booking will not be allowed.
  * 
  */
 class CreateAvailabilityTypesTable extends Migration
@@ -20,7 +22,7 @@ class CreateAvailabilityTypesTable extends Migration
     {
         Schema::create('availability_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("type")->comment("default,blocked_slot,booked")->default("default");
+            $table->string("type")->comment("default,blocked_slot,booked,available")->default("default");
             $table->timestamps();
         });
     }

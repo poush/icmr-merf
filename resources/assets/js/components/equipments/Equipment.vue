@@ -14,7 +14,7 @@
                 </a>
             </div>
 
-            <ul class="list-reset" v-show="toggle">
+            <!-- <ul class="list-reset" v-show="toggle">
                 <li class="px-6 pt-4 py-2 uppercase font-bold text-sm">Institutes</li>
                 <li 
                     class="px-6 py-3 border-b border-grey-light hover:bg-grey-lightest" 
@@ -23,7 +23,7 @@
                     {{ institute.name }}<br>
                     <span class="text-sm text-grey-dark">{{ institute.city }}</span>
                 </li>
-            </ul>
+            </ul> -->
 
         </div>
     </div>

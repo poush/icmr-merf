@@ -45,15 +45,18 @@ class Institute extends Model
                                         $data['equipment_id'] => [ 'lab' => $data['lab' ] ] 
                                     ] );
 
-        // Availability to be updated.
-        foreach( $data['from_date_exist'] as $id => $from )
+        if( isset( $date['from_date_exist'] ) && is_array( $data['from_date_exist'] ) )
         {
-            EquipmentAvailability::where( 'id', $id )->update([
-                'from'      => date('Y-m-d H:i:s', strtotime( $from ) ),
-                'to'      => date('Y-m-d H:i:s', strtotime( $data['to_date_exist'][ $id ] ) ),                
-                'added_by'  => auth()->user()->id
+            // Availability to be updated.
+            foreach( $data['from_date_exist'] as $id => $from )
+            {
+                EquipmentAvailability::where( 'id', $id )->update([
+                    'from'      => date('Y-m-d H:i:s', strtotime( $from ) ),
+                    'to'      => date('Y-m-d H:i:s', strtotime( $data['to_date_exist'][ $id ] ) ),                
+                    'added_by'  => auth()->user()->id
 
-            ]);
+                ]);
+            }
         }
 
         // Availability to be added.

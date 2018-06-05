@@ -10,6 +10,13 @@ export default {
   methods: {
     toggleModal() {
       this.modal = !this.modal
+    },
+      bookEquipment(equipment, institute) {
+      window.location.href =
+        "/equipments/" + equipment.id + "?institute=" + institute.id;
+      // this.$parent.selectedEquipment = equipment.id
+      // this.$parent.selectedInstitute = institute.id
+      // this.$parent.page = 'booking'
     }
   },
   watch:{

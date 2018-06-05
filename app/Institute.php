@@ -45,7 +45,7 @@ class Institute extends Model
                                         $data['equipment_id'] => [ 'lab' => $data['lab' ] ] 
                                     ] );
 
-        if( isset( $date['from_date_exist'] ) && is_array( $data['from_date_exist'] ) )
+        if( isset( $data['from_date_exist'] ) && is_array( $data['from_date_exist'] ) )
         {
             // Availability to be updated.
             foreach( $data['from_date_exist'] as $id => $from )
@@ -54,7 +54,7 @@ class Institute extends Model
                     'from'      => date('Y-m-d H:i:s', strtotime( $from ) ),
                     'to'      => date('Y-m-d H:i:s', strtotime( $data['to_date_exist'][ $id ] ) ),                
                     'added_by'  => auth()->user()->id,
-                    'availability_type_id'  => $data['availability_type_id_exist'][ $id ]
+                    'availability_type_id'  => (int) $data['availability_type_id_exist'][ $id ]
                 ]);
             }
         }

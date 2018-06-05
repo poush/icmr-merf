@@ -237,9 +237,9 @@
                             <div class="flex flex-wrap -mx-3 mb-3">
 
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">  
-                                <label for="name" class="block font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle">{{ $e + 1 }}) Type</label>
+                                <label for="availability_type_id_exist{{ $eA->id }}" class="block font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle">{{ $e + 1 }}) Type</label>
                                 <div class="relative">
-                                    <select name="availability_type_id_exist[{{ $eA->id }}]" class="block appearance-none w-full sm-white border border-grey-light hover:border-grey px-2 h-8 py-2 pr-2 rounded" required>
+                                    <select id="availability_type_id_exist{{ $eA->id }}" name="availability_type_id_exist[{{ $eA->id }}]" class="block appearance-none w-full sm-white border border-grey-light hover:border-grey px-2 h-8 py-2 pr-2 rounded" required>
                                         <option value="">Select</option>
 
                                         @foreach( $aTypes as $at_id => $at_name )

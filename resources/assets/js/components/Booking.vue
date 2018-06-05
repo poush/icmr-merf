@@ -44,6 +44,27 @@
                         <div class="border-b py-2 mb-3 w-full">
                             <strong>Machine Rest:</strong> {{ equipment.machine_rest }}
                         </div>
+                        <div class="border-b py-2 mb-3 w-full">
+                            <strong>Age of Equipment:</strong> {{ equipment.equipment_age }}
+                        </div>
+                        <div class="border-b py-2 mb-3 w-full">
+                            <strong>Source of funding:</strong> {{ equipment.source_funding }}
+                        </div>
+                        <div class="border-b py-2 mb-3 w-full">
+                            <strong>Model Number:</strong> {{ equipment.model }}
+                        </div>
+                        <div class="border-b py-2 mb-3 w-full">
+                            <strong>Not working since :</strong> {{ equipment.not_working_since }}
+                        </div>
+                        <div class="border-b py-2 mb-3 w-full">
+                            <strong>State of Art:</strong> {{ equipment.state_art }}
+                        </div>
+                        <div class="border-b py-2 mb-3 w-full">
+                            <strong>Purchase Date:</strong> {{ equipment.purchase_date }}
+                        </div>
+                        <div class="border-b py-2 mb-3 w-full">
+                            <strong>Latest Technology:</strong> {{ equipment.latest_technology }}
+                        </div>
 
                     </div>
                 </div>

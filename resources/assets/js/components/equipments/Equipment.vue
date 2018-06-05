@@ -13,7 +13,7 @@
                     <span class="float-right text-lg">&#10597;</span>
                 </a>
             </div>
-            <institute-select :modal="modal" :institutes="equipment.institutes"></institute-select>    
+            <institute-select :modal="modal" :equipment="equipment"></institute-select>    
             <!-- <ul class="list-reset" v-show="toggle">
                 <li class="px-6 pt-4 py-2 uppercase font-bold text-sm">Institutes</li>
                 <li 

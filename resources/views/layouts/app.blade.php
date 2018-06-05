@@ -106,5 +106,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+
+    @yield('after-script')
 </body>
 </html>

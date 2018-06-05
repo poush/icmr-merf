@@ -2,6 +2,8 @@
 
 @section('content')
 
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <div class="container my-24 mx-auto">
     <div class="flex items-center">
         <div class="md:w-1/2 md:mx-auto">
@@ -74,6 +76,21 @@
                         </div>
 
                         <div class="flex items-stretch mb-3">
+                            <label for="not_working_since" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Not Working Since</label>
+                            <div class="flex flex-col w-3/4">
+                                <input id="not_working_since" type="text" class="flex-grow h-8 px-2 border rounded {{ $errors->has('not_working_since') ? 'border-red-dark' : 'border-grey-light' }}" name="not_working_since" value="{{ old('not_working_since', $equipment->not_working_since) }}">
+                                {!! $errors->first('not_working_since', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                            </div>
+                        </div>
+
+                        <div class="flex items-stretch mb-3">
+                            <label for="purchase_date" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Purchase Date</label>
+                            <div class="flex flex-col w-3/4">
+                                <input id="purchase_date" type="text" class="flex-grow h-8 px-2 border rounded {{ $errors->has('purchase_date') ? 'border-red-dark' : 'border-grey-light' }}" name="purchase_date" value="{{ old('purchase_date', $equipment->purchase_date) }}">
+                                {!! $errors->first('purchase_date', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                            </div>
+                        </div>
+                        <div class="flex items-stretch mb-3">
                             <label for="extra" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Extra</label>
                             <div class="flex flex-col w-3/4">
                                 <input id="extra" type="text" class="flex-grow h-8 px-2 border rounded {{ $errors->has('extra') ? 'border-red-dark' : 'border-grey-light' }}" name="extra" value="{{ old('extra', $equipment->extra) }}" >
@@ -145,6 +162,42 @@
                             </div>
                         </div>
 
+                             <div class="flex items-stretch mb-3">
+                            <label for="equipment_age" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Age of Equipment</label>
+                            <div class="flex flex-col w-3/4">
+                                <input id="equipment_age" type="number" class="flex-grow h-8 px-2 border rounded {{ $errors->has('equipment_age') ? 'border-red-dark' : 'border-grey-light' }}" name="equipment_age" value="{{ old('equipment_age', $equipment->equipment_age) }}" >
+                                {!! $errors->first('equipment_age', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                            </div>
+                        </div>
+
+                        <div class="flex items-stretch mb-3">
+                            <label for="source_funding" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Source of Funding</label>
+                            <div class="flex flex-col w-3/4">
+                                <input id="source_funding" type="text" class="flex-grow h-8 px-2 border rounded {{ $errors->has('source_funding') ? 'border-red-dark' : 'border-grey-light' }}" name="source_funding" value="{{ old('source_funding', $equipment->source_funding) }}" >
+                                {!! $errors->first('source_funding', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                            </div>
+                        </div>
+
+                        <div class="flex items-stretch mb-3">
+                            <label for="state_art" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">State of Art</label>
+                            <div class="flex flex-col w-3/4">
+                                <input id="state_art" type="text" class="flex-grow h-8 px-2 border rounded {{ $errors->has('state_art') ? 'border-red-dark' : 'border-grey-light' }}" name="state_art" value="{{ old('state_art', $equipment->state_art) }}" >
+                                {!! $errors->first('state_art', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                            </div>
+                        </div>
+
+                        <div class="flex items-stretch mb-3">
+                            <label for="latest_technology" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">Is Latest Technology ?</label>
+                            <div class="flex flex-col w-3/4">
+                                <select name="latest_technology" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-4 py-2 pr-8 rounded shadow" >
+                                    <option value="">Select</option>
+                                    <option value="1" @if(old('latest_technology', $equipment->latest_technology) == 1 ) selected @endif >Yes</option>
+                                    <option value="0" @if(old('latest_technology', $equipment->latest_technology) === 0 ) selected @endif >No</option>
+                                </select>
+                                {!! $errors->first('latest_technology', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                            </div>
+                        </div>
+
                         <div class="flex">
                             <div class="w-3/4 ml-auto">
                                 <button type="submit" class="bg-brand hover:bg-brand-dark text-white text-sm font-sembiold py-2 px-4 rounded mr-3">
@@ -160,3 +213,38 @@
 </div>
 @endsection
 
+@section('after-script')
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script>
+$(function() {
+   $('#not_working_since').daterangepicker({
+    timePicker: true,
+    singleDatePicker: true,
+    autoUpdateInput: false,
+    timePicker24Hour: true,
+    timePickerIncrement: 30,
+    locale: {
+      format: 'YYYY-MM-DD H:mm:ss'
+    }
+  },  function(chosen_date) {
+        $('#not_working_since').val(chosen_date.format('YYYY-MM-DD H:mm:ss'));
+    });
+
+  $('#purchase_date').daterangepicker({
+    timePicker: false,
+    singleDatePicker: true,
+    autoUpdateInput: false,
+    locale: {
+      format: 'YYYY-MM-DD'
+    }
+  }, function(chosen_date) {
+        $('#purchase_date').val(chosen_date.format('YYYY-MM-DD'));
+    });
+});
+</script>
+
+@endsection

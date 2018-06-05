@@ -20,6 +20,10 @@
             Add Equipment
         </a>
         @endif
+
+        <a href="{{ route('equipments.index') }}" class="text-right bg-purple-light text-white text-sm py-1 px-1 float-right">
+            View Equipments
+        </a>
   	</h1>
 
 	<table class="table text-left w-full">

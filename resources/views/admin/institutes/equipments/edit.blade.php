@@ -232,20 +232,40 @@
                         </label>
                         <br/><br/>
                         <div id="availibility_div">
-
                             @foreach( $equipmentAvailability as $e => $eA )
+
+                            <div class="flex flex-wrap -mx-3 mb-3">
+
+                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">  
+                                <label for="name" class="block font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle">{{ $e + 1 }}) Type</label>
+                                <div class="relative">
+                                    <select name="availability_type_id_exist[{{ $eA->id }}]" class="block appearance-none w-full sm-white border border-grey-light hover:border-grey px-2 h-8 py-2 pr-2 rounded" required>
+                                        <option value="">Select</option>
+
+                                        @foreach( $aTypes as $at_id => $at_name )
+                                        <option value="{{ $at_id }}" @if(old( 'availability_type_id', $eA->availability_type_id ) == $at_id ) selected @endif >{{ $at_name }} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             
-                            <div class="flex items-stretch mb-3">
-                            <label for="from" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">{{ $e + 1 }} From</label>
-                            <div class="flex flex-col w-3/4">
+                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">  
+
+                            <label for="from" class="block font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle"> From</label>
+                            <div class="flex flex-col">
                                 <input id="from_date_exist.{{$eA->id}}" type="text" class="flex-grow h-8 px-2 border rounded {{ $errors->has('from_date_exist') ? 'border-red-dark' : 'border-grey-light' }}" name="from_date_exist[{{$eA->id}}]" value="{{ old('from', $eA->from ) }}">
                                 {!! $errors->first('from_date_exist[]', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
                             </div>
                             
-                            <label for="to" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">To</label>
-                            <div class="flex flex-col w-3/4">
+                            </div>
+
+                            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">  
+
+                            <label for="to" class="block font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle">To</label>
+                            <div class="flex flex-col">
                                 <input id="to_date_exist.{{ $eA->id }}" type="text" class="flex-grow h-8 px-2 border rounded {{ $errors->has('to') ? 'border-red-dark' : 'border-grey-light' }}" name="to_date_exist[{{$eA->id}}]" value="{{ old('to', $eA->to) }}">
                                 {!! $errors->first('to_date_exist[]', '<span class="text-red-dark text-sm mt-2">:message</span>') !!}
+                            </div>
                             </div>
                             </div>
                             @endforeach
@@ -272,12 +292,26 @@
 
 
 @section('after-script')
+    
+    @php 
+        $string_options = '';
+
+        foreach( $aTypes as $at_id => $at_name ) {
+            $string_options .= '<option value="'.$at_id.'" >'.$at_name.'</option>';
+        }
+
+    @endphp
 
 <script type="text/javascript">
+
     function addMoreAvailability()
     {
-        var $cloneHtml = '<div class="flex items-stretch mb-3"><label for="from" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">From</label><div class="flex flex-col w-3/4"><input id="from" type="text" class="flex-grow h-8 px-2 border rounded" name="from[]" value="" /></div>'
-                        + '<label for="to" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">To</label><div class="flex flex-col w-3/4"><input id="to" type="text" class="flex-grow h-8 px-2 border rounded" name="to[]" value="" /></div><span onclick="$(this).parent().remove();" class="p-1 text-sm bg-red text-white font-bold" style="cursor:pointer">X</span></div>';
+        var optionString = '{!! $string_options !!}';
+
+        var $availabilityTypeDropdown = '<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0"><label for="name" class="block font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle">Type</label><div class="relative"><select name="availability_type_id[]" class="block appearance-none w-full sm-white border border-grey-light hover:border-grey px-2 h-8 py-2 pr-2 rounded" required><option value="">Select</option>' + optionString +'</select></div></div>';
+                                   
+        var $cloneHtml = '<div class="flex flex-wrap -mx-3 mb-3">'+ $availabilityTypeDropdown + '<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0"><label for="from" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle w-1/4">From</label><div class="flex flex-col"><input id="from" type="text" class="flex-grow h-8 px-2 border rounded" name="from[]" value="" /></div></div>'
+                        + '<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0"><label for="to" class="text-right font-semibold text-grey-dark text-sm pt-2 pr-3 align-middle">To</label><div class="flex flex-col"><input id="to" type="text" class="flex-grow h-8 px-2 border rounded" name="to[]" value="" /></div></div><span onclick="$(this).parent().remove();" class="mt-6 p-1 text-sm bg-red text-white font-bold" style="cursor:pointer">X</span></div>';
 
         document.getElementById('availibility_div').innerHTML += $cloneHtml;
 
@@ -288,8 +322,7 @@
               format: 'YYYY-MM-DD hh:mm A'
             }
           });      
-    }
-
+    } 
 </script>
 
 
@@ -300,6 +333,15 @@
 <script>
 
 $(function() {
+
+    $('#availibility_div input').daterangepicker({
+        timePicker: true,
+        singleDatePicker: true,
+        locale: {
+          format: 'YYYY-MM-DD hh:mm A'
+        }
+    });
+
    $('#not_working_since').daterangepicker({
     timePicker: true,
     singleDatePicker: true,

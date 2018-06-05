@@ -50,11 +50,11 @@ class Institute extends Model
             // Availability to be updated.
             foreach( $data['from_date_exist'] as $id => $from )
             {
-                EquipmentAvailability::where( 'id', $id )->update([
+                EquipmentAvailability::find( 'id', $id )->update([
                     'from'      => date('Y-m-d H:i:s', strtotime( $from ) ),
                     'to'      => date('Y-m-d H:i:s', strtotime( $data['to_date_exist'][ $id ] ) ),                
-                    'added_by'  => auth()->user()->id
-
+                    'added_by'  => auth()->user()->id,
+                    'availability_type_id'  => $data['availability_type_id_exist'][ $id ]
                 ]);
             }
         }
@@ -69,7 +69,8 @@ class Institute extends Model
                                                             'equipment_id' => $data['equipment_id'],
                                                             'from' => date('Y-m-d H:i:s', strtotime( $from )),
                                                             'to'      => date('Y-m-d H:i:s', strtotime( $data['to'][ $index ] ) ),                
-                                                            'added_by'  => auth()->user()->id
+                                                            'added_by'  => auth()->user()->id,
+                                                            'availability_type_id'  => $data['availability_type_id'][ $index ]
                                                         ] );
             }
         }

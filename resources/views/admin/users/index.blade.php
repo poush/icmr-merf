@@ -51,9 +51,13 @@
 		    		 @endswitch
 		    	</td>
 		    	<td class="p-4 w-1/5"> {{ $user->created_at->format('d M Y H:i:s') }}</td>
-		    	<td class="p-4">
+		    	<td class="p-4 pr-2">
 		    		 <a href="{{ route('admin.users.edit', $user->id) }}" class="bg-blue-light text-white text-sm py-1 px-1">Edit</a>
 		    	</td>
+		    	<td class="p-4 pl-2">
+		    			<a href="{{ route('admin.users.show', $user->id) }}" class="bg-blue text-white text-sm py-1 px-1">Show</a>
+		    	</td>
+
 		    </tr>
 		    @endforeach
 		</tbody>

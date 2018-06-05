@@ -2,5 +2,5 @@
 
 @section('content')
 
-    <booking-view :equipment="{{ $equipment }}"></booking-view>
+    <booking-view auth="{{ Auth::check() }}" :equipment="{{ $equipment }}"></booking-view>
 @endsection

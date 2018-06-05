@@ -6,6 +6,7 @@ use App\Category;
 use App\Institute;
 use App\Equipment;
 use Illuminate\Http\Request;
+use App\Booking;
 
 class EquipmentController extends Controller
 {
@@ -122,6 +123,17 @@ class EquipmentController extends Controller
 
     public function book(Request $request)
     {
-        
+        // return $request->equipment_id;
+        Booking::create([
+            'equipment_id'=>$request->equipment_id,
+            'equipment_availability_id'=>$request->equipment_availability_id,
+            'user_id'=>auth()->id(),
+            'status'=>0
+        ]);
+        if($request->wantsJson()){
+            return response()->json([
+                'message'=>'success'
+            ]);
+        }
     }
 }

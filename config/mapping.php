@@ -8,4 +8,12 @@ return [
         'internal' => 'Internal User',
         'user' => 'External User'
     ],
+
+    'booking_status' => [
+    	0 => 'Pending',
+    	1 => 'Approved',
+    	2 => 'Accepted',
+    	3 => 'Confirmed',
+    	4 => 'Returned'
+    ]
 ];

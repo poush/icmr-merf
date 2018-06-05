@@ -38,6 +38,13 @@
                 <a class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6" href="{{ url('/register') }}">Register</a>
             @else
                 <a class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                <a href="{{ route('logout') }}"
+                class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                {{ csrf_field() }}
+            </form>
             @endif
         </div>
     </div>

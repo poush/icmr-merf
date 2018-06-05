@@ -29,7 +29,8 @@ Vue.component('equipment-search', require('./components/equipments/Search.vue'))
 Vue.component('equipment-view', require('./components/equipments/Equipment.vue'));
 Vue.component('booking-view', require('./components/Booking.vue'));
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('institute-select',require('./components/equipments/InstituteSelect.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });

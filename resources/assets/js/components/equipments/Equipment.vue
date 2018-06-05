@@ -8,12 +8,12 @@
             </div>
 
             <div class="border-b border-grey-light pb-3">
-                <a href="javascript:void(0)" class="block no-underline px-6" v-on:click="toggle=!toggle">
+                <a href="javascript:void(0)" class="block no-underline px-6" @click="toggleModal">
                     Select Institute
                     <span class="float-right text-lg">&#10597;</span>
                 </a>
             </div>
-
+            <institute-select :modal="modal" :institutes="equipment.institutes"></institute-select>    
             <!-- <ul class="list-reset" v-show="toggle">
                 <li class="px-6 pt-4 py-2 uppercase font-bold text-sm">Institutes</li>
                 <li 
@@ -30,30 +30,32 @@
 </template>
 
 <script>
-function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
+function sleep(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
 }
 
-
-    export default {
-        props: {
-            equipment: { required: true }
-        },
-        data () {
-            return {
-                toggle: false
-            }
-        },
-        methods: {
-            bookEquipment(equipment, institute) {
-                window.location.href = '/equipments/' + equipment.id + '?institute=' + institute.id
-                // this.$parent.selectedEquipment = equipment.id
-                // this.$parent.selectedInstitute = institute.id
-                // this.$parent.page = 'booking'
-            }
-        }
+export default {
+  props: {
+    equipment: { required: true }
+  },
+  data() {
+    return {
+      toggle: false,
+      modal: false
+    };
+  },
+  methods: {
+    bookEquipment(equipment, institute) {
+      window.location.href =
+        "/equipments/" + equipment.id + "?institute=" + institute.id;
+      // this.$parent.selectedEquipment = equipment.id
+      // this.$parent.selectedInstitute = institute.id
+      // this.$parent.page = 'booking'
+    },
+    toggleModal() {
+      this.modal = !this.modal;
     }
+  }
+};
 </script>
-
-
 

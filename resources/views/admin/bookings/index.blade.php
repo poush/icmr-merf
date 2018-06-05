@@ -30,12 +30,41 @@
                 <td class="p-4 w-1/6"> {{ $booking->equipmentAvailability->institute->name ?? '' }}</td>
                 <td class="p-4 w-1/6"> {{ $booking->equipmentAvailability->from . ' to ' . $booking->equipmentAvailability->to }}</td>
                 <td class="p-4 w-1/6"> {{ $booking->user->name ?? '' }}</td>
-                <td class="p-4 w-1/6"> {{ config( 'mapping.booking_status.'.$booking->status, '' )}}</td>
+                <td class="p-4 w-1/6"> 
+                    
+                    @switch( $booking->status )
+                        @case(0)
+                            <span class="bg-blue text-white shadow rounded text-sm py-1 px-1">
+                                {{ config( 'mapping.booking_status.'.$booking->status, '' )}}
+                            </span>
+                            @break
+                        @case(1)
+                            <span class="bg-purple text-white shadow rounded text-sm py-1 px-1">
+                                {{ config( 'mapping.booking_status.'.$booking->status, '' )}}
+                            </span>
+                            @break
+                        @case(2)
+                            <span class="bg-red text-white shadow rounded text-sm py-1 px-1">
+                                {{ config( 'mapping.booking_status.'.$booking->status, '' )}}
+                            </span>
+                            @break
+                        @case(3)
+                            <span class="bg-green text-white shadow rounded text-sm py-1 px-1">
+                                {{ config( 'mapping.booking_status.'.$booking->status, '' )}}
+                            </span>
+                            @break
+                     @endswitch
+                </td>
 		    	<td class="p-4 w-1/6"> {{ $booking->created_at->format('d M Y H:i:s') }}</td>
 		    	<td class="p-4 w-1/6">
                     
-                    <a href="{{ route('admin.bookings.action', [ $booking->id, 'action' => 'approve' ]) }}" class="bg-blue-light text-white text-sm py-1 px-1"> Approve </a>
-                    <a href="{{ route('admin.bookings.action', [ $booking->id, 'action' => 'reject' ]) }}" class="bg-red text-white text-sm ml-2 py-1 px-1"> Reject </a>
+                    @if( $booking->status == 0 )
+                        <button class="bg-blue-light text-white text-sm py-1 px-1" onclick="performAction( 'approve' , {{ $booking->id }})"> Approve </button>
+                        <button class="bg-red text-white text-sm ml-2 py-1 px-1" onclick="performAction( 'reject' , {{ $booking->id }})"> Reject </button>
+                    @elseif( $booking->status == 1 )
+                        <button class="bg-blue-light text-white text-sm py-1 px-1" onclick="performAction( 'confirm' , {{ $booking->id }})"> Confirm </button>
+
+                    @endif
 		    	</td>
 		    </tr>
 		    @endforeach
@@ -45,5 +74,61 @@
 	{{ $bookings->links() }}
 
 </div>
+
+@endsection
+
+@section('after-script')
+
+<script type="text/javascript">
+    
+    function post(path, params, method) {
+        method = method || "post"; // Set method to post by default if not specified.
+
+        // The rest of this code assumes you are not using a library.
+        // It can be made less wordy if you use one.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for(var key in params) {
+            if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+            }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function performAction( type, bookingId)
+    {        
+        var $response = 0;
+
+        switch( type )
+        {
+            case 'approve' :
+                $response = confirm('Are you sure you want to approve');
+                break;
+            case 'reject' :
+                $response = confirm('Are you sure you want to reject');
+                break;
+            case 'confirm' :
+                $response = confirm('Are you sure you want to confirm');
+                break;
+        }
+
+        if( $response )
+        {
+            var URL = "{{ route('admin.bookings.action', [ $booking->id ]) }}";
+            post( URL, { 'action' : type, '_token' : '{{ csrf_token() }}' }, 'post');
+        }
+
+    }
+</script>
 
 @endsection

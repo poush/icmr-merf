@@ -54,4 +54,7 @@ Route::group([
 
     Route::resource('categories', 'CategoryController');
 
+    Route::post('bookings/{id}', 'BookingController@action')->name('bookings.action');
+    Route::get('bookings', 'BookingController@index')->name('bookings.index');
+
 });

@@ -8,7 +8,7 @@ class EquipmentAvailability extends Model
 {
     protected $table = 'equipment_availability';
 
-    protected $fillable = [ 'institute_id', 'equipment_id', 'from', 'to', 'added_by' ];
+    protected $fillable = [ 'institute_id', 'equipment_id', 'from', 'to', 'added_by', 'availability_type_id'];
     
     public function equipment()
     {

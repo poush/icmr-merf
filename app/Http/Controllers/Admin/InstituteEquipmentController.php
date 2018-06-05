@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Equipment;
 use App\Category;
+use App\AvailabilityType;
 use App\Http\Requests\Equipment\CreateRequest;
 use App\Http\Requests\Equipment\UpdateRequest;
 use App\Http\Requests\Equipment\AddEquipmentRequest;
@@ -96,9 +97,11 @@ class InstituteEquipmentController extends Controller
 
         $equipmentAvailability = $institute->equipmentAvailability()->where('equipment_id', $id)->get();
 
+        $aTypes = AvailabilityType::pluck('type', 'id');
+
         $categories = Category::pluck( 'name', 'id');
 
-        return view('admin.institutes.equipments.edit', compact( 'equipment', 'equipments', 'equipmentAvailability', 'categories' ) );
+        return view('admin.institutes.equipments.edit', compact( 'equipment', 'equipments', 'equipmentAvailability', 'categories', 'aTypes' ) );
     }
 
     /**

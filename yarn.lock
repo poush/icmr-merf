@@ -7315,6 +7315,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+sweetalert2@7.x:
+  version "7.22.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.22.0.tgz#3b4c049ae2bf7c4a4bdd45241d509e23eaaa6059"
+
 tailwindcss@>=0.5.1:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-0.5.2.tgz#eded994f26ee9715e2bb13ba82ed087637994e15"
@@ -7887,6 +7891,12 @@ vue-style-loader@^3.0.0:
   dependencies:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
+
+vue-sweetalert2@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/vue-sweetalert2/-/vue-sweetalert2-1.2.4.tgz#7b7c9b56b02d26c1016f20a3fe342e1f2f0524fa"
+  dependencies:
+    sweetalert2 "7.x"
 
 vue-template-compiler@^2.5.13:
   version "2.5.16"

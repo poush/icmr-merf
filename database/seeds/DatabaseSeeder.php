@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             $institutes->each(function ($institute) use ($equipment) {
                 $equipment->availability()->saveMany(
                     factory(App\EquipmentAvailability::class, 12)
-                        ->make(['institute_id' => $institute->id])
+                        ->make(['institute_id' => $institute->id,'availability_type_id'=>4])
                 );
             });
         });

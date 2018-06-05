@@ -33,6 +33,8 @@ Route::resource('institutes', 'EquipmentController')->only([
     'index', 'show'
 ]);
 
+Route::post('/equipments/book','EquipmentController@book');
+
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',

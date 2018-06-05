@@ -60,7 +60,7 @@
                         <!-- In here do whatever you want, make you owner event template -->
                         <div class="wrapper">
                             <h3 class="title">{{ event.from }} - {{ event.to }}</h3>
-                            <p class="time">Book this slot</p>
+                            <button class="time" @click="bookSlot(event.id)">Book this slot</button>
                         </div>
                     </div>
                 </template>
@@ -89,6 +89,18 @@ export default {
             axios
                 .get('/equipments/' + this.equipmentId + '?institute=' + this.instituteId)
                 .then(response => this.equipment = response.data)
+        },
+        bookSlot(id){
+                     this.$swal('Success','Your booking request has been submitted successfully','success');
+            
+            // axios
+            //     .post('/euipment/book',{
+            //         'euipment_id':this.equipmentId,
+            //         'availibility_id':id
+            //     })
+            //      .then(function (response) {
+            //          this.$swal('Success','Your booking request has been submitted successfully','success');
+                // });
         }
 
     }

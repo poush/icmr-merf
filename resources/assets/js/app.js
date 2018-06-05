@@ -8,6 +8,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueSweetalert2 from 'vue-sweetalert2';
+
+Vue.use(VueSweetalert2);
 
 import AutoComplete from 'v-autocomplete'
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader

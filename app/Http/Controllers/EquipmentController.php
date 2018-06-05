@@ -6,6 +6,7 @@ use App\Category;
 use App\Institute;
 use App\Equipment;
 use Illuminate\Http\Request;
+use App\Booking;
 
 class EquipmentController extends Controller
 {
@@ -63,7 +64,10 @@ class EquipmentController extends Controller
                     $query->where('id', $request->get('institute'));
                 },
                 'availability' => function ($query) use ($request) {
-                    $query->where('institute_id', $request->get('institute'));
+                    $query->where([
+                        'institute_id'=>$request->get('institute'),
+                        'availability_type_id'=> 4
+                    ]);
                 },
                 'category'
             ]);
@@ -76,7 +80,7 @@ class EquipmentController extends Controller
 
             return $available;
         });
-
+        // dd($equipment);
             // return response()->json($equipment);
         // }
 
@@ -115,5 +119,21 @@ class EquipmentController extends Controller
     public function destroy(Equipment $equipment)
     {
         //
+    }
+
+    public function book(Request $request)
+    {
+        // return $request->equipment_id;
+        Booking::create([
+            'equipment_id'=>$request->equipment_id,
+            'equipment_availability_id'=>$request->equipment_availability_id,
+            'user_id'=>auth()->id(),
+            'status'=>0
+        ]);
+        if($request->wantsJson()){
+            return response()->json([
+                'message'=>'success'
+            ]);
+        }
     }
 }

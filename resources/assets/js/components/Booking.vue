@@ -60,7 +60,7 @@
                         <!-- In here do whatever you want, make you owner event template -->
                         <div class="wrapper">
                             <h3 class="title">{{ event.from }} - {{ event.to }}</h3>
-                            <p class="time">Book this slot</p>
+                            <button class="time" @click="bookSlot(event.id)">Book this slot</button>
                         </div>
                     </div>
                 </template>
@@ -78,30 +78,55 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-    props: {
-        equipment: { required: true },
+  props: {
+    equipment: { required: true },
+    auth: { required: true }
+  },
+  methods: {
+    getEquipmentInfo() {
+      axios
+        .get(
+          "/equipments/" + this.equipmentId + "?institute=" + this.instituteId
+        )
+        .then(response => (this.equipment = response.data));
     },
-    methods: {
-        getEquipmentInfo() {
-            axios
-                .get('/equipments/' + this.equipmentId + '?institute=' + this.instituteId)
-                .then(response => this.equipment = response.data)
-        }
-
+    bookSlot(id) {
+      if (this.auth) {
+        axios
+          .post("/equipments/book", {
+            equipment_id: this.equipment.id,
+            equipment_availability_id: id
+          })
+          .then(response => {
+            this.$swal(
+              "Success",
+              "Your booking request has been submitted successfully",
+              "success"
+            );
+          });
+      } else {
+        this.$swal({
+          type: "error",
+          title: "Oops...",
+          text: "You need to log in to book this equipment!"
+        });
+        //  this.$swal('Error','Your booking request has been submitted successfully','danger');
+      }
     }
-}
+  }
+};
 </script>
 
 <style lang="postcss">
-    .__vev_calendar-wrapper .events-wrapper .date {
-        padding: 5px 0;
-        font-size: 20px;
-    }
-    .__vev_calendar-wrapper .events-wrapper {
-        padding: 30px 35px;
-    }
+.__vev_calendar-wrapper .events-wrapper .date {
+  padding: 5px 0;
+  font-size: 20px;
+}
+.__vev_calendar-wrapper .events-wrapper {
+  padding: 30px 35px;
+}
 </style>
 

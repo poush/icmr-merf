@@ -77,13 +77,15 @@
 
                 :events="equipment.availability">
                 <template slot-scope="props">
-                    <div v-for="(event, index) in props.showEvents" class="event-item">
+                    <div v-for="(event, index) in props.showEvents" class="event-item mb-8">
                         <!-- In here do whatever you want, make you owner event template -->
                         <div class="wrapper">
                             <h3 class="title">{{ event.from }} - {{ event.to }}</h3>
-                            <button class="time" @click="bookSlot(event.id)">Book this slot</button>
+                            <input type="checkbox" :value="event.id" class="time" id="checkbox" v-model="book.checked">
+                            
                         </div>
                     </div>
+                    <button class="bg-orange-darkest hover:bg-orange-dark text-white font-bold py-2 px-8 mx-8 mx-auto rounded-full" @click="bookSlot" style="margin-left:124px;">Book these slots</button>
                 </template>
             </vue-event-calendar>
         </div>
@@ -106,6 +108,13 @@ export default {
     equipment: { required: true },
     auth: { required: true }
   },
+  data(){
+      return{
+          book: {
+              checked:[]
+          }
+      }
+  },
   methods: {
     getEquipmentInfo() {
       axios
@@ -114,12 +123,12 @@ export default {
         )
         .then(response => (this.equipment = response.data));
     },
-    bookSlot(id) {
+    bookSlot() {
       if (this.auth) {
         axios
           .post("/equipments/book", {
             equipment_id: this.equipment.id,
-            equipment_availability_id: id
+            equipment_availability_id: this.book.checked
           })
           .then(response => {
             this.$swal(

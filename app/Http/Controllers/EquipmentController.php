@@ -123,13 +123,18 @@ class EquipmentController extends Controller
 
     public function book(Request $request)
     {
+        $rand = str_random(10);
+        foreach($request->equipment_availability_id as $ids){
+            Booking::create([
+                'order_id'=>$rand,
+                'equipment_id'=>$request->equipment_id,
+                'equipment_availability_id'=>$ids,
+                'user_id'=>auth()->id(),
+                'status'=>0
+            ]);
+        }
         // return $request->equipment_id;
-        Booking::create([
-            'equipment_id'=>$request->equipment_id,
-            'equipment_availability_id'=>$request->equipment_availability_id,
-            'user_id'=>auth()->id(),
-            'status'=>0
-        ]);
+       
         if($request->wantsJson()){
             return response()->json([
                 'message'=>'success'

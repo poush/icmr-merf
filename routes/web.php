@@ -55,6 +55,7 @@ Route::group([
     Route::resource('categories', 'CategoryController');
 
     Route::post('bookings/{id}', 'BookingController@action')->name('bookings.action');
+    Route::get('bookings/{order_id}', 'BookingController@show')->name('bookings.show');
     Route::get('bookings', 'BookingController@index')->name('bookings.index');
 
 });

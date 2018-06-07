@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="container my-16 mx-auto">
 
 	<h1 class="mb-8">
@@ -15,7 +14,6 @@
                 <th class="p-4">S.No. </th>
                 <th class="p-4 w-1/6">Equipment Name</th>
                 <th class="p-4 w-1/6">Institute Name</th>
-                <th class="p-4 w-1/6">Slot</th>
                 <th class="p-4 w-1/6">Requested By</th>
                 <th class="p-4 w-1/6">Status</th>
                 <th class="p-4 w-1/6">Created On</th>
@@ -28,7 +26,6 @@
                 <th class="p-4">{{ $u + 1 }}</th>
                 <td class="p-4 w-1/6"> {{ $booking->equipment->name ?? '' }}</td>
                 <td class="p-4 w-1/6"> {{ $booking->equipmentAvailability->institute->name ?? '' }}</td>
-                <td class="p-4 w-1/6"> {{ $booking->equipmentAvailability->from . ' to ' . $booking->equipmentAvailability->to }}</td>
                 <td class="p-4 w-1/6"> {{ $booking->user->name ?? '' }}</td>
                 <td class="p-4 w-1/6"> 
                     
@@ -57,14 +54,9 @@
                 </td>
 		    	<td class="p-4 w-1/6"> {{ $booking->created_at->format('d M Y H:i:s') }}</td>
 		    	<td class="p-4 w-1/6">
-                    
-                    @if( $booking->status == 0 )
-                        <button class="bg-blue-light text-white text-sm py-1 px-1" onclick="performAction( 'approve' , {{ $booking->id }})"> Approve </button>
-                        <button class="bg-red text-white text-sm ml-2 py-1 px-1" onclick="performAction( 'reject' , {{ $booking->id }})"> Reject </button>
-                    @elseif( $booking->status == 1 )
-                        <button class="bg-blue-light text-white text-sm py-1 px-1" onclick="performAction( 'confirm' , {{ $booking->id }})"> Confirm </button>
 
-                    @endif
+                    <a class="bg-blue-light text-white text-sm py-1 px-1" href="{{ route('admin.bookings.show', $booking->order_id) }}"> Show </button>
+
 		    	</td>
 		    </tr>
 		    @endforeach

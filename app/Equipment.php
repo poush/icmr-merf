@@ -43,4 +43,14 @@ class Equipment extends Model
     {
         return $this->update( $data );
     }
+
+    public function institute()
+    {
+        return $this->belongsTo( Institute::class );
+    }
+
+    public function isCreatedByInstitute()
+    {
+        return $this->institute_id ? true : false;
+    }
 }

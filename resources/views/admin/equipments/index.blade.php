@@ -63,6 +63,10 @@
                         <a href="{{ route('admin.institute-equipments.edit', $equipment->id) }}" class="bg-blue-dark text-white text-sm py-1 px-1">Update</a>
                     @endif
 
+                    @can( 'manage-bookings' )
+                        <a href="{{ route('admin.bookings.index', [ 'equipment_id' => $equipment->id ]) }}" class="bg-purple text-white text-xs py-1 px-1">Show Bookings</a>
+                    @endif
+
 		    	</td>
 		    </tr>
 		    @endforeach

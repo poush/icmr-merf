@@ -44,7 +44,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('manage-bookings', function ($user) {
-            return in_array($user->role, [ 'institute' ] );
+            return in_array($user->role, [ 'institute', 'super-admin'] );
         });
     }
 }

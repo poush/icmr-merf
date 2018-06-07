@@ -29,9 +29,14 @@ class BookingController extends Controller
         {
             $institute_id = auth()->user()->institute_id;
 
-            // $bookings = $bookings->whereHas('equipmentAvailability', function( $q ) use( $institute_id ) {
-            //             $q->where('institute_id', $institute_id);
-            //         });
+            $bookings = $bookings->whereHas('equipmentAvailability', function( $q ) use( $institute_id ) {
+                        $q->where('institute_id', $institute_id);
+                    });
+        }
+
+        if( $equipment_id = request('equipment_id') )
+        {
+            $bookings = $bookings->where('equipment_id', $equipment_id );
         }
 
         $bookings = $bookings->paginate( 20 );

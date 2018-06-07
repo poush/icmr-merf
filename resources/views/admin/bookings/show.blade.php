@@ -155,7 +155,7 @@
 
         if( $response )
         {
-            var URL = "{{ route('admin.bookings.action', [ $booking->id ]) }}";
+            var URL = "{{ route('admin.bookings.index') }}" + '/' + bookingId ;
             post( URL, { 'action' : type, '_token' : '{{ csrf_token() }}' }, 'post');
         }
 

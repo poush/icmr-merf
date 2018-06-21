@@ -61,7 +61,11 @@
             <tr class="flex w-full mb-4 border-b border-grey-light">
                 <th class="p-4">{{ $u + 1 }}</th>
                 <td class="p-4 w-1/6"> {{ $booking->equipmentAvailability->institute->name ?? '' }}</td>
-                <td class="p-4 w-1/6"> {{ $booking->user->name ?? '' }}</td>
+                <td class="p-4 w-1/6"> {{ $booking->user->name ?? '' }}
+                    <span class="bg-black text-white shadow rounded text-sm py-1 px-1">
+                        {{ $booking->user->role ?? '' }}
+                    </span>
+                </td>
                 <td class="p-4 w-1/6"> {{ $booking->equipmentAvailability->from . ' to ' . $booking->equipmentAvailability->to }}</td>
                 <td class="p-4 w-1/6"> 
                     
@@ -99,6 +103,9 @@
 
                     @endif
                 @endcan
+                @cannot('confirm-booking')
+                    Login with respective institute's account to approve or cancel
+                @endcannot
                 </td>
             </tr>
             @endforeach

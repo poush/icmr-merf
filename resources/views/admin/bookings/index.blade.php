@@ -15,6 +15,7 @@
                 <th class="p-4 w-1/6">Equipment Name</th>
                 <th class="p-4 w-1/6">Institute Name</th>
                 <th class="p-4 w-1/6">Requested By</th>
+                <th class="p-4 w-1/6">Requester's Role</th>
                 <th class="p-4 w-1/6">Status</th>
                 <th class="p-4 w-1/6">Created On</th>
                 <th class="p-4 w-1/6">Action(s)</th>
@@ -26,7 +27,12 @@
                 <th class="p-4">{{ $u + 1 }}</th>
                 <td class="p-4 w-1/6"> {{ $booking->equipment->name ?? '' }}</td>
                 <td class="p-4 w-1/6"> {{ $booking->equipmentAvailability->institute->name ?? '' }}</td>
-                <td class="p-4 w-1/6"> {{ $booking->user->name ?? '' }}</td>
+                <td class="p-4 w-1/6">{{ $booking->user->name ?? '' }}</td>
+                <td class="p-4 w-1/6">
+                    <span class="bg-black text-white shadow rounded text-sm py-1 px-1">
+                        {{ $booking->user->role ?? '' }}
+                    </span>
+                </td>
                 <td class="p-4 w-1/6"> 
                     
                     @switch( $booking->status )

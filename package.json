@@ -21,6 +21,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "babel-preset-env": "^1.7.0",
         "v-autocomplete": "^1.8.2",
         "vue-event-calendar": "^1.5.2",
         "vue-sweetalert2": "^1.2.4"

@@ -55,7 +55,7 @@
     <section class="py-4 px-16 text-center bg-grey-light">
         <div class="">
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                <p class="text-grey-darker text-sm float-left" >Hi, {{ Auth::user()->name }}</p>
+                <p class="text-grey-darker text-sm float-left" >Hi, {{ Auth::user()->name }} ({{@Auth::user()->institute()->first()->name}}) </p>
                 <div class="text-sm lg:flex-grow text-right">
     
                     @can('manage-users')

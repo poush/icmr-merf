@@ -90,7 +90,7 @@
                 </td>
                 <td class="p-4 w-1/6"> {{ $booking->created_at->format('d M Y H:i:s') }}</td>
                 <td class="p-4 w-1/6">
-                    
+                @can('confirm-booking')
                     @if( $booking->status == 0 )
                         <button class="bg-blue-light text-white text-sm py-1 px-1" onclick="performAction( 'approve' , {{ $booking->id }})"> Approve </button>
                         <button class="bg-red text-white text-sm ml-2 py-1 px-1" onclick="performAction( 'reject' , {{ $booking->id }})"> Reject </button>
@@ -98,6 +98,7 @@
                         <button class="bg-blue-light text-white text-sm py-1 px-1" onclick="performAction( 'confirm' , {{ $booking->id }})"> Confirm </button>
 
                     @endif
+                @endcan
                 </td>
             </tr>
             @endforeach

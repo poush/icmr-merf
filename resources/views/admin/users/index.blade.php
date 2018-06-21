@@ -37,10 +37,16 @@
 		    				<span class="bg-blue text-white shadow rounded text-sm py-1 px-1">{{ config('mapping.roles.user') }}</span>
 		    			    @break
 		    			@case('institute')
-		    				<span class="bg-blue text-white shadow rounded text-sm py-1 px-1">{{ config('mapping.roles.institute') }}</span>
+		    				<span class="bg-blue text-white shadow rounded text-sm py-1 px-1">{{ config('mapping.roles.institute')}}</span>
+		    				<br/>
+		    				<span class="bg-green text-white shadow rounded text-sm py-1 px-1">{{ $user->institute()->first()->name}}
+		    				</span>
 		    				@break
 		    			@case('editor')
 		    				<span class="bg-purple text-white shadow rounded text-sm py-1 px-1">{{ config('mapping.roles.editor') }}</span>
+		    				<br/>
+		    				<span class="bg-green text-white shadow rounded text-sm py-1 px-1">{{ $user->institute()->first()->name}}
+		    				</span>
 		    				@break
 		    			@case('super-admin')
 		    				<span class="bg-red text-white shadow rounded text-sm py-1 px-1">{{ config('mapping.roles.super-admin') }}</span>

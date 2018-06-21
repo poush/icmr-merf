@@ -80,7 +80,7 @@
                     <div v-for="(event, index) in props.showEvents" class="event-item mb-8">
                         <!-- In here do whatever you want, make you owner event template -->
                         <div class="wrapper">
-                            <h3 class="title">{{ event.from }} - {{ event.to }}</h3>
+                            <h3 class="title">{{ event.from }} - {{ event.to }} ({{event.date}})</h3>
                             <input type="checkbox" :value="event.id" class="time" id="checkbox" v-model="book.checked">
                             
                         </div>

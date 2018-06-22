@@ -19,14 +19,22 @@ class EquipmentController extends Controller
      */
     public function index(Equipment $equipment)
     {
-        if( auth()->user()->role == 'super-admin')
+        if( auth()->user()->role != 'super-admin')
         {
-            $equipments = $equipment->paginate( 20 );
-
-        } else {
-
-            $equipments = auth()->user()->institute->equipments()->paginate( 20 );
+            $equipment = auth()->user()->institute->equipments();
         }
+
+        if( $name = trim( request( 'name') ) ) {
+            $equipment = $equipment->where('name', 'like', '%'.$name.'%');
+        }
+
+        if( $institute_name = trim( request( 'institute_name') ) ) {
+            $equipment = $equipment->whereHas('institute', function( $q ) use( $institute_name ) {
+                $q->where('name', 'like', '%'.$institute_name.'%');
+            });
+        }
+
+        $equipments = $equipment->with('institute')->paginate( 20 );
 
         return view('admin.equipments.index', compact( 'equipments') );
     }

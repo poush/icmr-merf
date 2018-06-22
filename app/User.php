@@ -29,12 +29,28 @@ class User extends Authenticatable
 
     public function getUsersPaginated( $page = 20 )
     {
-        return $this->latest('created_at')->paginate( 20 ); 
+        $user = $this;
+
+        if( $name = trim( request( 'name') ) ) {
+            $user = $this->where('name', 'like', '%'.$name.'%');
+        }
+
+        if( $institute_name = trim( request( 'institute_name') ) ) {
+            $user = $user->whereHas('institute', function( $q ) use( $institute_name ) {
+                $q->where('name', 'like', '%'.$institute_name.'%');
+            });
+        }
+        return $user->latest('created_at')->paginate( 20 ); 
     }
 
     public function getInstituteSpecificUsersPaginated( $institute_id, $page = 20 )
     {
-        return $this->where('institute_id',  $institute_id )->latest('created_at')->paginate( 20 );
+        $user = $this;
+        if( $name = trim( request( 'name') ) ) {
+            $user = $this->where('name', 'like', '%'.$name.'%');
+        }
+
+        return $user->where('institute_id',  $institute_id )->latest('created_at')->paginate( 20 );
     }
 
     public function createUser($data)

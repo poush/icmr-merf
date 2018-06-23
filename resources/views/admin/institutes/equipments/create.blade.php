@@ -95,6 +95,10 @@
                 };
             },
             processResults: function (data, params) {
+              var data = $.map(data, function (obj) {
+                            obj.id = obj.name; // replace pk with your identifier
+                            return obj;
+                        });
               return {
                 results: data
               };
@@ -141,6 +145,10 @@
                 };
             },
             processResults: function (data, params) {
+              var data = $.map(data, function (obj) {
+                            obj.id = obj.manufacturer; // replace pk with your identifier
+                            return obj;
+                        });
               return {
                 results: data
               };
@@ -184,11 +192,15 @@
                     model_no: params.term,
                     type: 'model',
                     name: $('#equipment_name').select2('data')[0].name,
-                    manufacturer: $('#equipment_manufacturer').select2('data')[0].name,
+                    manufacturer: $('#equipment_manufacturer').select2('data')[0].manufacturer,
 
                 };
             },
             processResults: function (data, params) {
+              var data = $.map(data, function (obj) {
+                            obj.id = obj.model; // replace pk with your identifier
+                            return obj;
+                        });
               return {
                 results: data
               };

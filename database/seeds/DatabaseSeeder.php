@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InstitutesTableSeeder::class);
         $this->call(EquipmentsTableSeeder::class);
 
+        DB::table('institute_equipment')->delete();
         Equipment::all()->each(function($equipment){
             if($equipment->institute_id != 0 && $equipment->id != NULL){
                 DB::table('institute_equipment')->insert(

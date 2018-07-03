@@ -25,8 +25,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             1 => 
             array (
@@ -36,8 +36,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             2 => 
             array (
@@ -47,8 +47,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             3 => 
             array (
@@ -58,8 +58,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             4 => 
             array (
@@ -69,8 +69,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             5 => 
             array (
@@ -80,8 +80,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             6 => 
             array (
@@ -91,8 +91,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             7 => 
             array (
@@ -102,8 +102,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             8 => 
             array (
@@ -113,8 +113,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             9 => 
             array (
@@ -124,8 +124,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             10 => 
             array (
@@ -135,8 +135,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             11 => 
             array (
@@ -146,8 +146,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             12 => 
             array (
@@ -157,8 +157,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             13 => 
             array (
@@ -168,8 +168,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             14 => 
             array (
@@ -179,8 +179,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             15 => 
             array (
@@ -190,8 +190,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             16 => 
             array (
@@ -201,8 +201,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             17 => 
             array (
@@ -212,8 +212,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             18 => 
             array (
@@ -223,8 +223,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             19 => 
             array (
@@ -234,8 +234,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             20 => 
             array (
@@ -245,8 +245,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             21 => 
             array (
@@ -256,8 +256,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             22 => 
             array (
@@ -267,8 +267,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             23 => 
             array (
@@ -278,8 +278,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             24 => 
             array (
@@ -289,8 +289,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
             25 => 
             array (
@@ -300,8 +300,8 @@ class InstitutesTableSeeder extends Seeder
                 'city' => NULL,
                 'phone' => NULL,
                 'email' => NULL,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
             ),
         ));
         

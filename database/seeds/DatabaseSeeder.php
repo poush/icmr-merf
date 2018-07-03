@@ -12,7 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->where('email', 'admin@merf.icmr.org.in')->delete();
+        DB::table('users')->delete();
+        // where('email', 'admin@merf.icmr.org.in')->delete();
         
         factory(App\User::class)->create([
             'email' => 'admin@merf.icmr.org.in',

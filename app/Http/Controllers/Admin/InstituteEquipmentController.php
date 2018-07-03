@@ -153,4 +153,24 @@ class InstituteEquipmentController extends Controller
 
         return $equipments->toArray();
     }
+
+    /**
+     * To remove an equipment from the institute.
+     * 
+     * @param  int $id 
+     * 
+     * @return redirect()
+     */
+    public function destroy( $id )
+    {
+        if( ! auth()->user()->isInstituteAdmin() )
+        {
+            return abort('401', 'Unauthorized Request');
+        }
+        $equipment = Equipment::findOrFail( $id );
+
+        $equipment->institutes()->detach( auth()->user()->institute_id );
+
+        return redirect()->back()->withMessage( 'Equipment removed Successfully' );
+    }
 }

@@ -102,6 +102,10 @@
                         <a href="{{ route('admin.bookings.index', [ 'equipment_id' => $equipment->id ]) }}" class="bg-purple text-white text-xs py-1 px-1">Show Bookings</a>
                     @endif
 
+                    @if( auth()->user()->isInstituteAdmin() )
+                        <button class="bg-red text-white text-xs py-1 px-1" onclick="performAction( 'remove' , {{ $equipment->id }})"> Remove </button>
+                    @endif
+
 		    	</td>
 		    </tr>
 		    @endforeach
@@ -111,5 +115,56 @@
 	{{ $equipments->links() }}
 
 </div>
+
+@endsection
+
+
+@section('after-script')
+
+<script type="text/javascript">
+    
+    function post(path, params, method) {
+        method = method || "post"; // Set method to post by default if not specified.
+
+        // The rest of this code assumes you are not using a library.
+        // It can be made less wordy if you use one.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for(var key in params) {
+            if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+            }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function performAction( type, equipmentId)
+    {        
+        var $response = 0;
+
+        switch( type )
+        {
+            case 'remove' :
+                $response = confirm('Are you sure you want to remove');
+                break;
+        }
+
+        if( $response )
+        {
+            var URL = "{{ route('admin.institute-equipments.store') }}" + '/' + equipmentId ;
+            post( URL, { 'action' : type, '_token' : '{{ csrf_token() }}' , '_method' : 'DELETE'}, 'post');
+        }
+
+    }
+</script>
 
 @endsection

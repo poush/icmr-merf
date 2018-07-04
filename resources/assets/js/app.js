@@ -17,6 +17,8 @@ import AutoComplete from 'v-autocomplete'
 import 'v-autocomplete/dist/v-autocomplete.css'
 Vue.use(AutoComplete)
 
+import VuePaginate from 'vue-paginate'
+Vue.use(VuePaginate)
 
 import 'vue-event-calendar/dist/style.css'
 import vueEventCalendar from 'vue-event-calendar'

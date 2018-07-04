@@ -1,10 +1,16 @@
 <template>
-    <div class="w-1/4 pr-6 pb-6">
+    <div class="pr-6 pb-6 w-1/2">
         <div class="bg-white">
             <div class="px-6 pt-6">
-                <h3 class="font-light mb-4">{{equipment.name}}</h3>
-                <p class="mb-4"><strong>Model:</strong> {{ equipment.model }}</p>
-                <p class="mb-4"><strong>Manufaturer:</strong> {{ equipment.manufacturer }}</p>
+                <h3 class="font-light mb-4">{{equipment.name.length >= 10 ? 
+                  equipment.name.substr(0,160)+"\u2026" : equipment.name }}</h3>
+                <p class="mb-4"><strong>Model:</strong> {{ 
+                  equipment.model.length >= 120 ?
+                  equipment.model.substr(0, 160) + "\u2026" : equipment.model }}</p>
+                <p class="mb-4"><strong>Manufaturer:</strong> {{ 
+                  equipment.manufacturer.length >= 120 ? 
+                  equipment.manufacturer.substr(0, 160) + "\u2026" :
+                  equipment.manufacturer }}</p>
             </div>
 
             <div class="border-b border-grey-light pb-3">

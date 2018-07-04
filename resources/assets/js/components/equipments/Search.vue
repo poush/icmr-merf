@@ -27,7 +27,7 @@
 
          <!-- style="border-left: 4px solid #e2624b !important;" -->
 
-        <section class="flex p-20 items-start">
+        <section class="flex p-20 items-start flex flex-wrap">
             <div class="w-1/5">
                 <div class="bg-white pt-6 mb-8">
                     <div class="uppercase font-bold tracking-wide text-c2 mb-2 px-6">Categories</div>
@@ -65,13 +65,15 @@
             </div>
 
             <div class="w-4/5 pl-8 equipments flex flex-wrap items-start" v-show="page == 'equipments'">
+            <paginate name="filteredList" :list="filteredList" class="flex flex-wrap items-start" :per="12">
                 <equipment-view 
-                    v-for="equipment in filteredList"
+                    v-for="equipment in paginated('filteredList')"
                     :equipment="equipment" 
                     :key="equipment.id"
                     ></equipment-view>
-
+            </paginate>
             </div>
+            <paginate-links for="filteredList" class="flex flex-wrap mx-auto list-reset" :show-step-links="true"></paginate-links>    
         </section>
         
 
@@ -85,98 +87,107 @@
 </template>
 
 <script>
-    import axios from 'axios';
-    import EquipmentView from './Equipment';
-    import BookingView from './../Booking';
+import axios from "axios";
+import EquipmentView from "./Equipment";
+import BookingView from "./../Booking";
 
-    export default {
-        props: {
-            categories: { required: true },
-            institutes: { required: true }
-        },
-        components: {
-            'equipment-view': EquipmentView,
-            'booking-view': BookingView,
-        },
-        data () {
-            return {
-                page: 'equipments',
-                search: '',
-                equipment: { availability: []} ,
-                equipments: [],
-                selectedEquipment: null,
-                selectedInstitute: null,
-                filterByCategory: null,
-                filterByInstitute: null
-            }
-        },
-        watch: {
-            async page(val) {
-                if (val == 'booking') {
-                    await axios
-                        .get('/equipments/' + this.selectedEquipment + '?institute=' + this.selectedInstitute)
-                        .then(response => this.$parent.equipment = response.data)
-                }
-            }
-        },
-        computed: {
-            filteredList() {
-                return this.equipments.filter(equipment => {
-                    return equipment
-                        .name
-                        .toLowerCase()
-                        .includes(this.search.toLowerCase())
-                }).filter(equipment => {
-                    if (this.filterByCategory) {
-                        return equipment.category_id == this.filterByCategory
-                    }
-                    return true
-                }).filter(equipment => {
-                    if (this.filterByInstitute) {
-                        for (const index in equipment.institutes) {
-                            if (equipment.institutes[index].id == this.filterByInstitute) {
-                                return true;
-                            }
-                        }
-                        return false
-                    }
-                    return true
-                })
-            }
-        },
-        mounted() {
-            axios
-                .get('/api/equipments')
-                .then(response => {
-                    this.equipments = response.data;
-                });
-            console.log('Component mounted.')
-        },
-        methods: {
-            getLabel (item) {
-                return item.name
-            },
-            selectCategory (categoryId) {
-                this.filterByCategory = categoryId;
-            },
-            selectInstitute (instituteId) {
-                this.filterByInstitute = instituteId;
-            },
-            updateItems (text) {
-                axios
-                    .get('/api/equipments?query=' + text)
-                    .then(response => {
-                        this.equipments = response.data;
-                    });
-                this.equipments = [this.equipment];
-            }
-        }
+export default {
+  props: {
+    categories: { required: true },
+    institutes: { required: true }
+  },
+  components: {
+    "equipment-view": EquipmentView,
+    "booking-view": BookingView
+  },
+  data() {
+    return {
+      page: "equipments",
+      search: "",
+      equipment: { availability: [] },
+      equipments: [],
+      selectedEquipment: null,
+      selectedInstitute: null,
+      filterByCategory: null,
+      filterByInstitute: null,
+      paginate: ["filteredList"]
+    };
+  },
+  watch: {
+    async page(val) {
+      if (val == "booking") {
+        await axios
+          .get(
+            "/equipments/" +
+              this.selectedEquipment +
+              "?institute=" +
+              this.selectedInstitute
+          )
+          .then(response => (this.$parent.equipment = response.data));
+      }
     }
+  },
+  computed: {
+    filteredList() {
+      return this.equipments
+        .filter(equipment => {
+          return equipment.name
+            .toLowerCase()
+            .includes(this.search.toLowerCase());
+        })
+        .filter(equipment => {
+          if (this.filterByCategory) {
+            return equipment.category_id == this.filterByCategory;
+          }
+          return true;
+        })
+        .filter(equipment => {
+          if (this.filterByInstitute) {
+            for (const index in equipment.institutes) {
+              if (equipment.institutes[index].id == this.filterByInstitute) {
+                return true;
+              }
+            }
+            return false;
+          }
+          return true;
+        });
+    }
+  },
+  mounted() {
+    axios.get("/api/equipments").then(response => {
+      this.equipments = response.data;
+    });
+    console.log("Component mounted.");
+  },
+  methods: {
+    getLabel(item) {
+      return item.name;
+    },
+    selectCategory(categoryId) {
+      this.filterByCategory = categoryId;
+    },
+    selectInstitute(instituteId) {
+      this.filterByInstitute = instituteId;
+    },
+    updateItems(text) {
+      axios.get("/api/equipments?query=" + text).then(response => {
+        this.equipments = response.data;
+      });
+      this.equipments = [this.equipment];
+    }
+  }
+};
 </script>
 
 
-<style lang="scss" scoped>
-    .equipments {
-        background: #F7F7F7;
-    }
+<style lang="scss" >
+.equipments {
+  background: #f7f7f7;
+}
+.number {
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
 </style>

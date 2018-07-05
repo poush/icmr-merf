@@ -65,7 +65,7 @@
             </div>
 
             <div class="w-4/5 pl-8 equipments flex flex-wrap items-start" v-show="page == 'equipments'">
-            <paginate name="filteredList" :list="filteredList" class="flex flex-wrap items-start" :per="12">
+            <paginate name="filteredList" :list="filteredList" class="flex flex-wrap items-start" :per="40">
                 <equipment-view 
                     v-for="equipment in paginated('filteredList')"
                     :equipment="equipment" 
@@ -186,8 +186,8 @@ export default {
   background: #f7f7f7;
 }
 .number {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     cursor: pointer;
 }
 </style>

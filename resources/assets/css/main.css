@@ -86,3 +86,10 @@ body {
 .cal-wrapper .cal-body {
     @apply .bg-white;
 }
+
+.headlink {
+    color: black;
+}
+.smt{
+    font-size: 12px;
+}

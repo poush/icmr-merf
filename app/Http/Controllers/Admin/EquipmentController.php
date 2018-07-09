@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Equipment;
 use App\Category;
+use App\EquipmentAvailability;
+use App\Booking;
 use App\Http\Requests\Equipment\CreateRequest;
 use App\Http\Requests\Equipment\UpdateRequest;
 
@@ -106,13 +108,54 @@ class EquipmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * To delete/merge an equipment and its associated content into another equipment.
+     * 
+     * @param  int $id 
+     * 
+     * @return redirect()
      */
-    public function destroy($id)
+    public function destroy( Request $request, $equipmentToBeMerged )
     {
-        //
+        if( ! auth()->user()->isSuperAdmin() )
+        {
+            return abort('401', 'Unauthorized Request');
+        }
+
+        if( trim( $request->equipment_id ) == $equipmentToBeMerged->id )
+        {
+            return redirect()->back()->withMessage( 'Equipment Id cannot be same to the Merged Equipment Id');
+        }
+
+        if( !$request->equipment_id || !( $equipment = Equipment::find( $request->equipment_id ) ) ) 
+        {
+            return redirect()->back()->withMessage( 'Equipment Id is empty or Equipment not exists for this ID');
+        }
+
+        $institutes = $equipmentToBeMerged->institutes()->select('id')->get();
+
+        $institutes_array = [];
+
+        foreach( $institutes as $ins => $institute)
+        {
+            $institutes_array[ $institute->id ] = [ 'lab' => $institute->pivot_lab ];
+        }
+
+        \DB::transaction( function() use( $institutes_array, $equipmentToBeMerged, $request ) {
+
+            // Updae Equipment Institutes.
+            $equipmentToBeMerged->institutes()->syncWithoutDetaching( $institutes_array );
+            
+            // Update Equipment Availability.
+            EquipmentAvailability::where('equipment_id', $equipmentToBeMerged->id )->update( [ 'equipment_id' => $request->equipment_id ] );
+
+            // Update Equipment Booking Table.
+            Booking::where('equipment_id', $equipmentToBeMerged->id )->update( [ 'equipment_id' => $request->equipment_id ] );
+
+            // Delete Equipment Record
+            $equipmentToBeMerged->delete();
+
+        });
+
+        return redirect()->back()->withMessage( 'Equipment merged Successfully' );
     }
 }

@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="container my-16 mx-auto">
 
 	<h1 class="mb-8">
@@ -61,6 +60,7 @@
 		<thead class="flex w-full">
            <tr class="flex w-full mb-4">
                 <th class="p-4">S.No. </th>
+                <th class="p-4 w-1/6">ID</th>
                 <th class="p-4 w-1/6">Name</th>
                 <th class="p-4 w-1/6">Manufacturer</th>
                 <th class="p-4 w-1/6">Model</th>
@@ -75,6 +75,7 @@
             @foreach( $equipments as $u => $equipment)
             <tr class="flex w-full mb-4 border-b border-grey-light">
                 <th class="p-4">{{ $u + 1 }}</th>
+                <th class="p-4 w-1/6"> {{ $equipment->id }}</th>
                 <td class="p-4 w-1/6"> {{ $equipment->name }} <br/>
                                         @if( $equipment->institute)
                                         <span class="bg-green text-white shadow rounded text-sm py-1 my-1 px-1">{{ $equipment->institute->name ?? ''}}
@@ -106,6 +107,10 @@
                         <button class="bg-red text-white text-xs py-1 px-1" onclick="performAction( 'remove' , {{ $equipment->id }})"> Remove </button>
                     @endif
 
+                    @if( auth()->user()->isSuperAdmin() )
+                        <button class="bg-red text-white text-xs py-1 px-1" onclick="showMergePopup({{ $equipment->id }})"> Merge </button>
+                    @endif
+
 		    	</td>
 		    </tr>
 		    @endforeach
@@ -116,6 +121,33 @@
 
 </div>
 
+<div class="fixed pin z-50 overflow-auto bg-smoke-light flex" id="merge_modal" style="display: none">
+    <div class="relative p-8 bg-white w-full max-w-md m-auto flex-col flex">
+        <span class="absolute pin-t pin-b pin-r p-4" onclick="document.getElementById('merge_modal').style.display = 'none'">
+            <svg class="h-12 w-12 text-grey hover:text-grey-darkest" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+        </span>
+
+        <br/>
+        <p>
+            This action once taken is irreversible. So, Please make sure that everything is right . All the institute, equipment availability etc associated with the equipment ID <strong id="merge_equipment_id_popup"></strong> will be assigned to given below ID
+        </p>
+        <form class="w-full max-w-sm">
+          <div class="flex items-center border-b border-b-2 border-teal py-2">
+
+            {{ method_field('DELETE')}}
+            <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight" type="number" placeholder="Pleae Enter the Equipment ID" aria-label="Equipment ID" name="equipment_id" id="equipment_id">
+            
+            <button class="flex-no-shrink bg-teal hover:bg-teal-dark border-teal hover:border-teal-dark text-sm border-4 text-white py-1 px-2 rounded" type="button" onclick="performAction( 'merge' , '' )">
+                Merge  
+            </button>
+            <button class="flex-no-shrink border-transparent border-4 text-teal hover:text-teal-darker text-sm py-1 px-2 rounded" type="button" onclick="document.getElementById('merge_modal').style.display = 'none'">
+              Cancel
+            </button>
+          </div>
+        </form>
+
+    </div>
+</div>
 @endsection
 
 
@@ -147,6 +179,15 @@
         form.submit();
     }
 
+    var mergeEquipmentId = '';
+
+    function showMergePopup( $equipmentId )
+    {
+        document.getElementById('merge_modal').style.display = 'block';
+        mergeEquipmentId = $equipmentId;
+        document.getElementById('merge_equipment_id_popup').innerText = mergeEquipmentId;
+    }
+
     function performAction( type, equipmentId)
     {        
         var $response = 0;
@@ -155,13 +196,22 @@
         {
             case 'remove' :
                 $response = confirm('Are you sure you want to remove');
+                if( $response )
+                {
+                    var URL = "{{ route('admin.institute-equipments.store') }}" + '/' + equipmentId ;
+                    post( URL, { 'action' : type, '_token' : '{{ csrf_token() }}' , '_method' : 'DELETE'}, 'post');
+                }
                 break;
-        }
+            case 'merge' :
+                $response = confirm('Are you sure, you want to merge');
+                if( $response )
+                {
+                    $equipmentId = document.getElementById('equipment_id').value;
 
-        if( $response )
-        {
-            var URL = "{{ route('admin.institute-equipments.store') }}" + '/' + equipmentId ;
-            post( URL, { 'action' : type, '_token' : '{{ csrf_token() }}' , '_method' : 'DELETE'}, 'post');
+                    var URL = "{{ route('admin.equipments.store') }}" + '/' + mergeEquipmentId ;
+                    post( URL, { 'action' : type, '_token' : '{{ csrf_token() }}' , '_method' : 'DELETE', 'equipment_id' : $equipmentId}, 'post');
+                }
+                break;
         }
 
     }

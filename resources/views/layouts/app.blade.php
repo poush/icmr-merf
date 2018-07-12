@@ -74,9 +74,9 @@
                         <li class="">
                             <a href="{{ route('equipments.index') }}" class="hover:text-grey-light text-grey-dark no-underline">Equipments</a>
                         </li>
-                        <li class="">
+                        <!-- <li class="">
                             <a href="{{ route('institutes.index') }}" class="hover:text-grey-light text-grey-dark no-underline">Institutes</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="sm:w-1/5 h-auto sm:mt-0 mt-8">

@@ -33,7 +33,7 @@
                         <label>Created At</label> : {{ $equipment->created_at->format('Y-m-d') }}<br/>
                         <label>Created By</label> : 
                                         @if( $equipment->isCreatedByInstitute() )
-                                          {{ $equipment->insitute->name }}
+                                          {{ $equipment->institute->name ?? '-'}}
                                         @else
                                           {{ 'Super Admiin' }}
                                         @endif

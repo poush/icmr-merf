@@ -27,7 +27,7 @@
                 About
             </a>
             <a href="{{ route('equipments.index') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
-                Equipments
+                Book Equipment
             </a>
             <a href="{{ route('help') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white no-underline text-lg hover:text-brand-lighter mr-6">
                 Help

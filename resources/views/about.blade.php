@@ -13,7 +13,7 @@
                 <br><br>
                 <b>Medical Equipments Repository Facility (MERF) </b> is a platform to search, track and manage the medical equipment’s of the 26 institutes of ICMR which are operated and maintained by a dedicated and qualified group of Scientists and Engineers. The purpose of establishing this facility is to provide easy access to these equipment’s and their management to the scientific community for advanced research. It also facilitates operation of sophisticated equipment’s located in various regions and thus helps in providing the required training to the users at appropriate time. It also caters as a robust reporting system to maintain the stock and increasing the utilization of equipment’s by sharing them. It improves the traceability and gives the detailed information about the equipment present in any institute, through attributes like manufacturer and model number.
                 <br><br>
-                <b>MERF</b> has been established as a joint effort of the team <b> <a class="headlink" href="http://ipiyush.com/bvptechies"><u>Bvptechies <i class="fas fa-external-link-alt smt"></i></u></a></b>, under guidance of <b><u>Dr Lalit Mohan Goyal</u></b> from Bharati Vidyapeeth college of engineering, <b><u>Dr. Meenakshi Sharma (Scientist ‘F’, ICMR)</u></b> &amp; <b><u>Dr. Rajni Kant (Scientist ‘F’ and Head, ICMR)</u></b>. It was initially pitched as a problem statement at Smart India Hackathon 2017 which was a Government of India first ever initiative to solve the real world problems faced by various ministries. This provides feasibility in long run to keep the central institute as well as government updated about every instrument and its status in the institute.
+                <b>MERF</b> has been established as a joint effort of the team <b> <a class="headlink" href="http://ipiyush.com/bvptechies"><u>Bvptechies <i class="fas fa-external-link-alt smt"></i></u></a></b>, under guidance of <b><u>Dr Lalit Mohan Goyal</u></b> from Bharati Vidyapeeth college of engineering, <b><u>Dr. Meenakshi Sharma (Scientist ‘F’and Head, Division of NCD & ITR)</u></b> &amp; <b><u>Dr. Rajni Kant (Scientist ‘F’ and Head, Division of RMPPC)</u></b>. It was initially pitched as a problem statement at Smart India Hackathon 2017 which was a Government of India first ever initiative to solve the real world problems faced by various ministries. This provides feasibility in long run to keep the central institute as well as government updated about every instrument and its status in the institute.
             </p>
         </div>
     </section>
@@ -36,6 +36,24 @@
 
                 <div class="w-1/3 px-8 pb-16">
                     <h4 class="text-green text-xl font-bold pb-4">
+                        Repository Management
+                    </h4>
+                    <p class="">
+                        Effortless healthcare asset management, stock keeping and repository management.
+                    </p>
+                </div>
+                
+                <div class="w-1/3 px-8 pb-16">
+                    <h4 class="text-green text-xl font-bold pb-4">
+                        Easy Access
+                    </h4>
+                    <p class="">
+                        To provide scientists with a facility to use equipments not available within their laboratory for research.
+                    </p>
+                </div>
+
+                <div class="w-1/3 px-8 pb-16">
+                    <h4 class="text-green text-xl font-bold pb-4">
                         Enabling Research
                     </h4>
                     <p class="">
@@ -45,30 +63,14 @@
 
                 <div class="w-1/3 px-8 pb-16">
                     <h4 class="text-green text-xl font-bold pb-4">
-                        Full Accountability
+                        Accountability
                     </h4>
                     <p class="">
                         Integrated platform that provides full accountability and traceability of facilities in an Institute.
                     </p>
                 </div>
 
-                <div class="w-1/3 px-8 pb-16">
-                    <h4 class="text-green text-xl font-bold pb-4">
-                        Repository Management
-                    </h4>
-                    <p class="">
-                        Effortless healthcare asset management, stock keeping and repository management.
-                    </p>
-                </div>
 
-                <div class="w-1/3 px-8 pb-16">
-                    <h4 class="text-green text-xl font-bold pb-4">
-                        Easy Access
-                    </h4>
-                    <p class="">
-                        To provide scientists with a facility to use equipments not available within their laboratory for research.
-                    </p>
-                </div>
                     
             </div>
         </div>

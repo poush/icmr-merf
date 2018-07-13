@@ -59,7 +59,6 @@
 	<table class="table text-left w-full">
 		<thead class="flex w-full">
            <tr class="flex w-full mb-4">
-                <th class="p-4">S.No. </th>
                 <th class="p-4 w-1/6">ID</th>
                 <th class="p-4 w-1/6">Name</th>
                 <th class="p-4 w-1/6">Manufacturer</th>
@@ -74,7 +73,6 @@
         <tbody class="flex flex-col items-center justify-between overflow-y-scroll w-full">
             @foreach( $equipments as $u => $equipment)
             <tr class="flex w-full mb-4 border-b border-grey-light">
-                <th class="p-4">{{ $u + 1 }}</th>
                 <th class="p-4 w-1/6"> {{ $equipment->id }}</th>
                 <td class="p-4 w-1/6"> {{ $equipment->name }} <br/>
                                         @if( $equipment->institute)

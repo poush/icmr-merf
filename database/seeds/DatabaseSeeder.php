@@ -30,7 +30,10 @@ class DatabaseSeeder extends Seeder
                 DB::table('institute_equipment')->insert(
                     ['institute_id' => $equipment->institute_id, 'equipment_id' => $equipment->id]
                 );
-            }
+                $this->call(UsersTableSeeder::class);
+        $this->call(AvailabilityTypesTableSeeder::class);
+        $this->call(InstituteEquipmentTableSeeder::class);
+    }
         });
 
 
